@@ -22,7 +22,9 @@
 		trips_tri_val = document.querySelector("#trips_tri"),
 		tripsRounded_tri_val = document.querySelector("#tripsRounded_tri"),
 		trips_tra_val = document.querySelector("#trips_tra"),
-		tripsRounded_tra_val = document.querySelector("#tripsRounded_tra");
+		tripsRounded_tra_val = document.querySelector("#tripsRounded_tra"),
+		dc_pl_tri = document.querySelector("#dc_pl_tri"),
+		dc_pl_tra = document.querySelector("#dc_pl_tra");
 	
 	// Tri-Axle
 	var triAxlePrice = 0; //B3
@@ -141,8 +143,8 @@
 			//console.log("Load/Dump - Tri-axle: "+total_tri_load_dump);
 			tcTime_tri.innerHTML = totalCycleTime_tri;
 			//Round Trip
-			if(roundTrip_tri > 0) { roundTrip("tri"); }
-
+			googleTimeTri.innerHTML = roundTrip_tri;
+			googleTriInc.innerHTML = perIncrease_tri;
 		}else{
 			total_trailer_load_dump = parseInt(loadTime_tr)+parseInt(dumpTime_tr);
 			traTotal.innerHTML = "Total Load and Unload Time: "+total_trailer_load_dump;
@@ -155,22 +157,10 @@
 			tripsRounded_tra_val.innerHTML = trips_tra_rounded;
 			//console.log("Load/Dump - Trailer: "+total_trailer_load_dump);
 			tcTime_tra.innerHTML = totalCycleTime_tra;
-			if(roundTrip_tra > 0) { roundTrip("tra"); }
-		}
-	}
-	
-	function roundTrip(type) {
-		//builds round trip time
-		if(type === "tri") {
-			googleTimeTri.innerHTML = roundTrip_tri;
-			googleTriInc.innerHTML = perIncrease_tri;
-			
-		}else{
 			googleTimeTra.innerHTML = roundTrip_tra;
 			googleTraInc.innerHTML = perIncrease_tra;
 		}
 	}
-	
 	
 	wTime.addEventListener("change", selectOption, false);
 	priceTri.addEventListener("change", selectOption, false);
