@@ -5,6 +5,35 @@
 <title>Nelson Aggregate Sales App</title>
 </head>
 <body>
+<h2>Delivery Information</h2>
+<label>Select Nelson Location:</label><br>
+<select id="location">
+	<option value="">Please select an option below...</option>
+	<option value="">Address 1</option>
+    <option value="">Address 2</option>
+    <option value="">Address 3</option>
+    <option value="">Address 4</option>
+    <option value="">Address 5</option>
+    <option value="">Address 6</option>
+    <option value="">Address 7</option>
+</select>
+<br><br>
+<label>Delivery Address:</label><br>
+<input name="delivery_address" value=""><br>
+<br><br>
+<label>Working Day(Time in minutes)</label>
+<select id="wTime">
+	<option value="">Please select an option below...</option>
+    <option value="480">8 Hours</option>
+    <option value="540">9 Hours</option>
+	<option value="600">10 Hours</option>
+    <option value="660">11 Hours</option>
+    <option value="720">12 Hours</option>
+</select>
+<br>
+<p>Total number of trips per day(Tri-Axle): <span id="trips_tri"></span></p>
+<p>Total number of trips per day(Tri-Axle): <span id="tripsRounded_tri"></span></p>
+<br><br>
 <h2>Tri-axle</h2>
 <label>Tri-axle Price:</label><br>
 <select id="price_tri">
@@ -42,7 +71,6 @@
     <option value="40">40</option>
 </select>
 <p id="triTotal"></p>
-<p id="googleOneWay"></p>
 <br><br>
 <label>Tri-axle Average Weight:</label><br>
 <select id="avg_tri">
@@ -55,8 +83,19 @@
     <option value="25">25</option>
     <option value="36">26</option>
 </select>
-<br><br>
+<br>
 <p id="tri_totalTime"></p>
+
+<p>Google Time(Tri-Axle): <span id="googleTimeTri"></span> (Round Trip)</p>
+<p>Google Time +10%(Tri-Axle): <span id="googleTimeTriInc"></span> (Round Trip)</p>
+<p>Total Tri-Axle Time: <span id="tcTime_tri"></span></p>
+<br><br>
+
+<br>
+<p>Total number of trips per day(Trailer): <span id="trips_tra"></span></p>
+<p>Total number of trips per day(Trailer): <span id="tripsRounded_tra"></span></p>
+<br><br>
+
 <h2>Trailer</h2>
 <label>Trailer Price</label><br>
 <select id="price_tra">
@@ -107,23 +146,11 @@
     <option value="36">26</option>
 </select>
 <br><br>
-<h2>Delivery Time</h2>
-<label>Select Nelson Location:</label><br>
-<select id="location">
-	<option value="">Please select an option below...</option>
-	<option value="">Address 1</option>
-    <option value="">Address 2</option>
-    <option value="">Address 3</option>
-    <option value="">Address 4</option>
-    <option value="">Address 5</option>
-    <option value="">Address 6</option>
-    <option value="">Address 7</option>
-</select>
-<br><br>
-<label>Delivery Address:</label><br>
-<input name="delivery_address" value="">
-<br>
-<p id="time">(Time is written here...)</p>
+
+<p>Google Time(Trailer): <span id="googleTimeTra"></span> (Round Trip)</p>
+<p>Google Time +10%(Trailer): <span id="googleTimeTraInc"></span> (Round Trip)</p>
+<p>Total Trailer Time: <span id="tcTime_tra"></span></p>
+
 <script src="js/sales.js"></script>
 </body>
 </html>
