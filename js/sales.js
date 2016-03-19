@@ -19,12 +19,10 @@
 		tcTime_tri = document.querySelector("#tcTime_tri"),
 		tcTime_tra = document.querySelector("#tcTime_tra"),
 		wTime = document.querySelector("#wTime"),
-		trips_tri_val = document.querySelect("#trips_tri"),
-		tripsRounded_tri_val = document.querySelect("#tripsRounded_tri"),
-		trips_tra_val = document.querySelect("#trips_tra"),
-		tripsRounded_tra_val = document.querySelect("#tripsRounded_tra");
-	
-	
+		trips_tri_val = document.querySelector("#trips_tri"),
+		tripsRounded_tri_val = document.querySelector("#tripsRounded_tri"),
+		trips_tra_val = document.querySelector("#trips_tra"),
+		tripsRounded_tra_val = document.querySelector("#tripsRounded_tra");
 	
 	// Tri-Axle
 	var triAxlePrice = 0; //B3
@@ -52,7 +50,7 @@
 	var totalCycleTime_tra; //C12
 	
 	//Trips per 10 hour day //B&C 13
-	var workingDay = 600;
+	var workingDay;
 	var trips_tri;
 	var trips_tra;
 	//Rounded trip values B&C 14
