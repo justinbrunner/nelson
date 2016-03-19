@@ -24,7 +24,9 @@
 		trips_tra_val = document.querySelector("#trips_tra"),
 		tripsRounded_tra_val = document.querySelector("#tripsRounded_tra"),
 		dc_pl_tri = document.querySelector("#dc_pl_tri"),
-		dc_pl_tra = document.querySelector("#dc_pl_tra");
+		dc_pl_tra = document.querySelector("#dc_pl_tra"),
+		dt_pl_tri = document.querySelector("#dt_pl_tri"),
+		dt_pl_tra = document.querySelector("#dt_pl_tra");
 	
 	// Tri-Axle
 	var triAxlePrice = 0; //B3
@@ -60,9 +62,9 @@
 	var trips_tra_rounded;
 	
 	//Tri-Axle LOW
-	var rate_tri_low = (totalCycleTime_tri * triAxlePrice/60/avgWeight_tri).toFixed(1); //B17
-	var ratePerLoad_tri_low = (rate_tri_low * avgWeight_tri).toFixed(2); //B15
-	var total_for_day_tri_low = (ratePerLoad_tri_low * trips_tri).toFixed(2); //B16
+	var rate_tri_low; //B17
+	var ratePerLoad_tri_low; //B15
+	var total_for_day_tri_low; //B16
 	
 	//Tri-Axle HIGH
 	var rate_tri_high = (triAxlePrice*10/avgWeight_tri/trips_tri_rounded).toFixed(2); //B18
@@ -70,11 +72,11 @@
 	var total_for_day_tri_high = (ratePerLoad_tri_high * trips_tri).toFixed(2);
 	
 	//Trailer Low
-	var rate_tra_low = (totalCycleTime_tra * trailerPrice/60/avgWeight_tra).toFixed(1); //C17
-	var ratePerLoad_tra_low = (rate_tra_low * avgWeight_tra).toFixed(2); //C15
-	var total_for_day_tra_low = (ratePerLoad_tra_low * trips_tra).toFixed(2); //C16
+	var rate_tra_low; //C17
+	var ratePerLoad_tra_low; //C15
+	var total_for_day_tra_low; //C16
 	
-	//Trailer Low
+	//Trailer High
 	var rate_tra_high = (trailerPrice*10/avgWeight_tra/trips_tra_rounded).toFixed(2); //C18
 	var ratePerLoad_tra_high = (rate_tra_high * avgWeight_tra).toFixed(2); 
 	var total_for_day_tra_high = (ratePerLoad_tra_high * trips_tra).toFixed(2);
@@ -145,6 +147,13 @@
 			//Round Trip
 			googleTimeTri.innerHTML = roundTrip_tri;
 			googleTriInc.innerHTML = perIncrease_tri;
+			if(avgWeight_tri !== 0) {
+				rate_tri_low = (totalCycleTime_tri * triAxlePrice/60/avgWeight_tri).toFixed(1);
+				ratePerLoad_tri_low = (rate_tri_low * avgWeight_tri).toFixed(2);
+				dc_pl_tri.innerHTML = ratePerLoad_tri_low;
+				total_for_day_tri_low = (ratePerLoad_tri_low * trips_tri).toFixed(2);
+				dt_pl_tri.innerHTML = total_for_day_tri_low;
+			}
 		}else{
 			total_trailer_load_dump = parseInt(loadTime_tr)+parseInt(dumpTime_tr);
 			traTotal.innerHTML = "Total Load and Unload Time: "+total_trailer_load_dump;
@@ -159,6 +168,13 @@
 			tcTime_tra.innerHTML = totalCycleTime_tra;
 			googleTimeTra.innerHTML = roundTrip_tra;
 			googleTraInc.innerHTML = perIncrease_tra;
+			if(avgWeight_tra !== 0) {
+				rate_tra_low = (totalCycleTime_tra * trailerPrice/60/avgWeight_tra).toFixed(1);
+				ratePerLoad_tra_low = (rate_tra_low * avgWeight_tra).toFixed(2);
+				dc_pl_tra.innerHTML = ratePerLoad_tra_low;
+				total_for_day_tra_low = (ratePerLoad_tra_low * trips_tra).toFixed(2);
+				dt_pl_tra.innerHTML = total_for_day_tra_low;
+			}
 		}
 	}
 	
