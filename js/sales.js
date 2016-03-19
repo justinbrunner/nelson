@@ -85,6 +85,7 @@
 	var ratePerLoad_tra_high; 
 	var total_for_day_tra_high;
 	
+	//Functions
 	function selectOption(evt) {
 		var target = evt.target.id;
 		var selectValue = evt.currentTarget.value;
@@ -195,7 +196,7 @@
 			}
 		}
 	}
-	
+	//Listeners
 	wTime.addEventListener("change", selectOption, false);
 	priceTri.addEventListener("change", selectOption, false);
 	priceTra.addEventListener("change", selectOption, false);
@@ -205,5 +206,4 @@
 	dumpTra.addEventListener("change", selectOption, false);
 	avgTri.addEventListener("change", selectOption, false);
 	avgTra.addEventListener("change", selectOption, false);
-	
 })();
