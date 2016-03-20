@@ -5,6 +5,7 @@
 	var tri_layout = document.querySelector("#tri"), trailer_layout = document.querySelector("#trailer"), useTri = document.querySelector("#useTri"), useTra = document.querySelector("#useTra");
 	
 	function showHide(evt) {
+		evt.preventDefault();
 		var target = evt.currentTarget.id;
 		//console.log(target);
 		if(target === "useTri") {
