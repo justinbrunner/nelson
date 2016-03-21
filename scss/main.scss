@@ -4,6 +4,20 @@ $font_c: #242424;
 $header1: 22px;
 $header2: 20px;
 $header3: 18px;
+$marginSpacing: 15px;
+
+body {
+	padding: 0;
+  	margin: 0;
+  	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  	font-weight: normal;
+  	line-height: 1.5;
+  	color: #0a0a0a;
+  	background: #fefefe;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+	font-size: 14px;	
+}
 
 header h1 {
 	margin-top: 43px;
@@ -18,6 +32,12 @@ input {
 	margin-bottom: 15px;	
 }
 
+select {
+	height: 2.2375rem;
+  	padding: 0.35rem;	
+	font-size: .85rem;
+}
+
 h2 {
 	font-size: $header2;
 	font-weight: 500;	
@@ -25,7 +45,8 @@ h2 {
 
 h3 {
 	font-size: $header2;
-	font-weight: 300;		
+	font-weight: 300;
+	margin-top: $marginSpacing;		
 }
 
 .hide {
@@ -49,5 +70,38 @@ header {
 
 .truckingCal {
 	margin-top: 25px;	
+}
+
+p {
+	line-height: 1.6;
+  	margin-bottom: .5rem;	
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  line-height: inherit;
+  cursor: pointer; 
+  &:hover, &:focus { 
+    color: #1585cf;
+  }
+  &:visited {
+		color: #fff;  
+  }
+}
+
+.accordion-title {
+  display: block;
+  padding: 1.25rem .55rem;
+  line-height: 1;
+  font-size: 0.95rem;
+  color: #1585cf;
+  position: relative;
+  background: #292929;
+  border-bottom: 1px solid #e6e6e6; 
+	&:hover, &:focus {
+	color: #fff;
+    background-color: #1585cf;
+	}  
 }
 

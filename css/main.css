@@ -1,4 +1,16 @@
 /* Scss Document */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #0a0a0a;
+  background: #fefefe;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px; }
+
 header h1 {
   margin-top: 43px;
   font-size: 22px;
@@ -10,13 +22,19 @@ input {
   width: 100%;
   margin-bottom: 15px; }
 
+select {
+  height: 2.2375rem;
+  padding: 0.35rem;
+  font-size: .85rem; }
+
 h2 {
   font-size: 20px;
   font-weight: 500; }
 
 h3 {
   font-size: 20px;
-  font-weight: 300; }
+  font-weight: 300;
+  margin-top: 15px; }
 
 .hide {
   display: none; }
@@ -35,5 +53,32 @@ header {
 
 .truckingCal {
   margin-top: 25px; }
+
+p {
+  line-height: 1.6;
+  margin-bottom: .5rem; }
+
+a {
+  color: #fff;
+  text-decoration: none;
+  line-height: inherit;
+  cursor: pointer; }
+  a:hover, a:focus {
+    color: #1585cf; }
+  a:visited {
+    color: #fff; }
+
+.accordion-title {
+  display: block;
+  padding: 1.25rem .55rem;
+  line-height: 1;
+  font-size: 0.95rem;
+  color: #1585cf;
+  position: relative;
+  background: #292929;
+  border-bottom: 1px solid #e6e6e6; }
+  .accordion-title:hover, .accordion-title:focus {
+    color: #fff;
+    background-color: #1585cf; }
 
 /*# sourceMappingURL=main.css.map */
