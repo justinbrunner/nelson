@@ -11,10 +11,10 @@
 <body>
 <header>
 	<div class="row">
-    	<div class="large-2 column">
+    	<div class="large-2 columns">
         	<img src="images/Nelson_Aggregate_logo.png" alt="Nelson Aggregate Logo">
         </div>
-        <div class="large-10 column">
+        <div class="large-10 columns">
         	<h1>Welcome to Nelson Aggregate Trucking Rates</h1>
         </div>
     </div>
@@ -23,24 +23,29 @@
 	<div class="row">
     	<div class="medium-6 columns">
             <h2>Delivery Information</h2>
-            <select id="location">
-                <option value="" disabled selected>Select A Nelson location...</option>
-                <option value="">Burlington Quarry</option>
-                <option value="">Lincoln Quarry</option>
-                <option value="">Uhthoff Quarry</option>
-                <option value="">Oneida Quarry</option>
-                <option value="">Waynco Limited</option>
-            </select>
-            <input name="delivery_address" placeholder="Enter a delivery address" value="">
-            <select id="wTime">
-                <option value="" disabled selected>Select number of working hours...</option>
-                <option value="480">8 Hours</option>
-                <option value="540">9 Hours</option>
-                <option value="600">10 Hours</option>
-                <option value="660">11 Hours</option>
-                <option value="720">12 Hours</option>
-            </select>
             <ul class="accordion" data-accordion data-allow-all-closed="true">
+            	<li class="accordion-item is-active" data-accordion-item>
+    				<a href="#" class="accordion-title">Delivery Info</a>
+    				<div class="accordion-content" data-tab-content>
+                         <select id="location">
+                        <option value="" disabled selected>Select A Nelson location...</option>
+                        <option value="">Burlington Quarry</option>
+                        <option value="">Lincoln Quarry</option>
+                        <option value="">Uhthoff Quarry</option>
+                        <option value="">Oneida Quarry</option>
+                        <option value="">Waynco Limited</option>
+                    </select>
+                         <input name="delivery_address" placeholder="Enter a delivery address" value="">
+                         <select id="wTime">
+                             <option value="" disabled selected>Select number of working hours...</option>
+                             <option value="480">8 Hours</option>
+                             <option value="540">9 Hours</option>
+                             <option value="600">10 Hours</option>
+                             <option value="660">11 Hours</option>
+                             <option value="720">12 Hours</option>
+                         </select>
+            	  	</div>
+ 				</li>
             	<li class="accordion-item" data-accordion-item>
     				<a href="#" class="accordion-title">Tri-Axle Rates</a>
     				<div class="accordion-content" data-tab-content>
@@ -158,36 +163,26 @@
                         <p>Delivery total - $<span id="dt_pl_tra">0</span> per day</p>
                         <p>Rate(low): $<span id="tra_rate_low">0</span></p>
                         <p>Rate(high): $<span id="tra_rate_high">0</span></p>
-                       </div>
-                    </li>
-            <!--</div>-->
+                      </div>
+                   </li>
             	</ul>
         </div>
-        <div class="map medium-6 columns">
-            <div id="map"></div>
-        </div>
+        <div class="large-8 columns">
+        	<div class="flex-video">
+        		<div id="map_canvas"></div>
+    			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w"></script>
+            </div>
+    	</div>
     </div>
 </section>
 
-<!-- <section class="map">
-    <div class="row">
-        <div class="small-12-columns">
-            <button class="button change-location" data-locindex="0">Change Location</button>
-            <button class="button change-location" data-locindex="1">Change Location</button>
-            <button class="button change-location" data-locindex="2">Change Location</button>
-            <div id="map"></div>
-        </div>
-    </div>
-</section> -->
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA39vctKBN5Ln_v16-hi3F5f2KkDIkd-Y0"></script>
+<script src="js/map.js"></script>
+<script src="js/sales.js"></script>
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/foundation.min.js"></script>
 <!--<script src="js/layout.js"></script>-->
-<script src="js/foundation.accordion.js"></script>
-<script src="js/foundation.core.js"></script>
-<script src="js/foundation.util.keyboard.js"></script>
-<script src="js/foundation.util.motion.js"></script>
+
 <script type="text/javascript">
         $(document).ready(function () {
         $(document).foundation();

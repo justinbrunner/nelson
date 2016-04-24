@@ -6,7 +6,8 @@
 		directionsDisplay = new google.maps.DirectionsRenderer,
 		marker,
 		markers = [],
-		locationButtons = document.querySelectorAll('.change-location');
+		locationButtons = document.querySelectorAll('.change-location'),
+		cusIcon = "images/markers.svg";
 
 	var locationArray = [
 		[43.028088, -81.261887],
@@ -84,7 +85,7 @@
 	
 
 	// listeners
-	[].forEach.call(locationButtons, function(el) {
-		el.addEventListener('click', changeMapLocation, false);
-	});
+	// [].forEach.call(locationButtons, function(el) {
+	// 	el.addEventListener('click', changeMapLocation, false);
+	// });
 })();
