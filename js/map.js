@@ -2,7 +2,7 @@
 	"use strict";
 
 	var map = new google.maps.Map(document.querySelector('#map')),
-		directionsService = new google.maps.DirectionService,
+		directionsService = new google.maps.DirectionsService,
 		directionsDisplay = new google.maps.DirectionsRenderer,
 		marker,
 		markers = [],
