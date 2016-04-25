@@ -21,23 +21,23 @@
 </header>
 <section class="truckingCal">
 	<div class="row">
-    	<div class="large-4 columns">
+    	<div class="medium-6 large-4 columns">
             <h2>Delivery Information</h2>
             <ul class="accordion" data-accordion data-allow-all-closed="true">
             	<li class="accordion-item is-active" data-accordion-item>
     				<a href="#" class="accordion-title">Delivery Info</a>
     				<div class="accordion-content" data-tab-content>
-                         <select id="location">
-                        <option value="">Select A Nelson location...</option>
-                        <option value="">Burlington Quarry</option>
-                        <option value="">Lincoln Quarry</option>
-                        <option value="">Uhthoff Quarry</option>
-                        <option value="">Oneida Quarry</option>
-                        <option value="">Waynco Limited</option>
+                        <select id="location">
+                        <option value="" disabled selected>Select A Nelson location...</option>
+                        <option value="burlington">Burlington Quarry</option>
+                        <option value="lincoln">Lincoln Quarry</option>
+                        <option value="uhthoff">Uhthoff Quarry</option>
+                        <option value="oneida">Oneida Quarry</option>
+                        <option value="waynco">Waynco Limited</option>
                     </select>
-                         <input name="delivery_address" placeholder="Enter a delivery address" value="">
+                         <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
                          <select id="wTime">
-                             <option value="">Select number of working hours...</option>
+                             <option value="" disabled selected>Select number of working hours...</option>
                              <option value="480">8 Hours</option>
                              <option value="540">9 Hours</option>
                              <option value="600">10 Hours</option>
@@ -51,7 +51,7 @@
     				<div class="accordion-content" data-tab-content>
                         <h2>Tri-axle</h2>
                         <select id="price_tri">
-                            <option value="">Select a tri-axle rate...</option>
+                            <option value="" disabled selected>Select a tri-axle rate...</option>
                             <option value="95">$95.00</option>
                             <option value="100">$100.00</option>
                             <option value="105">$105.00</option>
@@ -59,7 +59,7 @@
                             <option value="115">$115.00</option>
                         </select>
                         <select id="load_tri">
-                            <option value="">Select a load time...</option>
+                            <option value="" disabled selected>Select a load time...</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
@@ -69,7 +69,7 @@
                             <option value="40">40</option>
                         </select>
                         <select id="dump_tri">
-                            <option value="">Select a Dump time...</option>
+                            <option value="" disabled selected>Select a Dump time...</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
@@ -80,7 +80,7 @@
                         </select>
                         <p id="triTotal"></p>
                         <select id="avg_tri">
-                            <option value="">Select a tri-axle average weight...</option>
+                            <option value="" disabled selected>Select a tri-axle average weight...</option>
                             <option value="21.5">21.5</option>
                             <option value="22">22</option>
                             <option value="22.5">22.5</option>
@@ -88,7 +88,7 @@
                         </select>
                         <h3>Delivery Time</h3>
                         <p>Trips per day: <span id="trips_tri"></span></p>
-                        <p>Trips per day(Rounded down): <span id="tripsRounded_tri"></span></p>
+                        <p>Trips per day (Rounded down): <span id="tripsRounded_tri"></span></p>
                         <p>Delivery Time: <span id="googleTimeTri"></span> (Round Trip)</p>
                         <p>Delivery Time +10%: <span id="googleTimeTriInc"></span> (Round Trip)</p>
                         <p>Total Time: <span id="tcTime_tri"></span></p>
@@ -105,7 +105,7 @@
                     <div class="accordion-content" data-tab-content>
                         <h2>Trailer</h2>
                         <select id="price_tra">
-                            <option value="">Select a trailer rate...</option>
+                            <option value="" disabled selected>Select a trailer rate...</option>
                             <option value="125">$125.00</option>
                             <option value="130">$130.00</option>
                             <option value="135">$135.00</option>
@@ -114,7 +114,7 @@
                             <option value="150">$150.00</option>
                         </select>
                         <select id="load_tra">
-                            <option value="">Select a load time...</option>
+                            <option value="" disabled selected>Select a load time...</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
@@ -124,7 +124,7 @@
                             <option value="40">40</option>
                         </select>
                         <select id="dump_tra">
-                            <option value="">Select a dump time...</option>
+                            <option value="" disabled selected>Select a dump time...</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
@@ -135,7 +135,7 @@
                         </select>
                         <p id="traTotal"></p>
                         <select id="avg_tra">
-                            <option value="">Select a trailer average weight...</option>
+                            <option value="" disabled selected>Select a trailer average weight...</option>
                             <option value="26">26</option>
                             <option value="27">27</option>
                             <option value="28">28</option>
@@ -154,7 +154,7 @@
                         </select>
                         <h3>Delivery Time</h3>
                         <p>Trips per day: <span id="trips_tra"></span></p>
-                        <p>Trips per day(Rounded): <span id="tripsRounded_tra"></span></p>
+                        <p>Trips per day (Rounded): <span id="tripsRounded_tra"></span></p>
                         <p>Delivery Time: <span id="googleTimeTra"></span> (Round Trip)</p>
                         <p>Delivery Time +10%: <span id="googleTimeTraInc"></span> (Round Trip)</p>
                         <p>Total Time: <span id="tcTime_tra"></span></p>
@@ -167,18 +167,15 @@
                    </li>
             	</ul>
         </div>
-        <div class="large-8 columns">
+        <div class="medium-6 large-8 columns">
         	<div class="flex-video">
         		<div id="map_canvas"></div>
-    			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w"></script>
             </div>
     	</div>
     </div>
 </section>
 
 
-<script src="js/map.js"></script>
-<script src="js/sales.js"></script>
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/foundation.min.js"></script>
 <!--<script src="js/layout.js"></script>-->
@@ -188,5 +185,8 @@
         $(document).foundation();
     });
 </script>
+<script src="js/sales.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w"></script>
+<script src="js/map.js"></script>
 </body>
 </html>
