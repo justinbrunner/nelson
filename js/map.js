@@ -3,7 +3,6 @@
 
 	var map = new google.maps.Map(document.querySelector('#map_canvas')),
 		directionsService = new google.maps.DirectionsService,
-		directionsDisplay = new google.maps.DirectionsRenderer,
 		distanceMatrix = new google.maps.DistanceMatrixService,
 		geocoder = new google.maps.Geocoder(),
 		marker,
@@ -12,7 +11,8 @@
 		addressField = document.querySelector('.address-control'),
 		quarrySelected = false,
 		quarryLocation,
-		cusIcon = "images/markers.svg";
+		cusIcon = "images/pickup.png",
+		mapRenderers = [];
 
 	var locationArray = {
 		burlington : [43.402310, -79.878961],
@@ -21,9 +21,6 @@
 		oneida : [42.955665, -79.950981],
 		waynco : [43.325848, -80.303435]
 	};
-
-	// set up some map services
-	directionsDisplay.setMap(map);
 
 	// find coordinates, pass them to the map API and set the map's center
 	if (navigator.geolocation) {
@@ -101,9 +98,21 @@
 							avoidTolls: true
 						};
 
+					[].forEach.call(mapRenderers, function(renderer) {
+						renderer.setMap(null);
+					});
+
 					directionsService.route(request, function(result, status) {
 						if (status == google.maps.DirectionsStatus.OK) {
-							directionsDisplay.setDirections(result);
+							 for (var i = 0, len = result.routes.length; i < len; i++) {
+				                var renderer = new google.maps.DirectionsRenderer({
+				                    map: map,
+				                    directions: result,
+				                    routeIndex: i
+				                });
+
+				                mapRenderers.push(renderer);
+							}
 						}
 					});
 
@@ -118,7 +127,9 @@
 						if (status !== google.maps.DistanceMatrixStatus.OK) {
 							console.log('Error! which was: ' + status);
 						} else {
-							console.log(response, status);
+							//console.log(response, status);
+							var distanceResult = response.rows[0].elements[0].distance.text;
+							console.log(distanceResult);
 						}
 					});					
 			    }
@@ -130,6 +141,11 @@
 	}
 
 	function changeMapLocation(e) {
+		if (mapRenderers.length) {
+			[].forEach.call(mapRenderers, function(renderer) {
+				renderer.setMap(null);
+			});
+		}
 		var arrayIndex = e.currentTarget.value;
 
 		var newCoords = {
