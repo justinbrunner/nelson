@@ -3,7 +3,6 @@
 
 	var map = new google.maps.Map(document.querySelector('#map_canvas')),
 		directionsService = new google.maps.DirectionsService,
-		directionsDisplay = new google.maps.DirectionsRenderer,
 		distanceMatrix = new google.maps.DistanceMatrixService,
 		geocoder = new google.maps.Geocoder(),
 		marker,
@@ -22,9 +21,6 @@
 		oneida : [42.955665, -79.950981],
 		waynco : [43.325848, -80.303435]
 	};
-
-	// set up some map services
-	directionsDisplay.setMap(map);
 
 	// find coordinates, pass them to the map API and set the map's center
 	if (navigator.geolocation) {
@@ -116,9 +112,6 @@
 				                });
 
 				                mapRenderers.push(renderer);
-							// console.log(result);
-							// for (var i=0, len = result.routes.length; i<len; i++) {
-							// directionsDisplay.setDirections(result[i]);
 							}
 						}
 					});
