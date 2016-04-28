@@ -1,5 +1,5 @@
 // JavaScript Document
-(function() {
+var mySalesInfo = (function() {
 	"use strict";
 	
 	var priceTri = document.querySelector("#price_tri"),
@@ -196,6 +196,11 @@
 			}
 		}
 	}
+
+	function setTravelTime(matrixTime) {
+		travelTime = matrixTime;
+	}
+
 	//Listeners
 	wTime.addEventListener("change", selectOption, false);
 	priceTri.addEventListener("change", selectOption, false);
@@ -206,4 +211,8 @@
 	dumpTra.addEventListener("change", selectOption, false);
 	avgTri.addEventListener("change", selectOption, false);
 	avgTra.addEventListener("change", selectOption, false);
+
+	return {
+		setTime : setTravelTime
+	}
 })();

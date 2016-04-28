@@ -130,6 +130,9 @@
 							//console.log(response, status);
 							var distanceResult = response.rows[0].elements[0].distance.text;
 							console.log(distanceResult);
+							
+							// set the travel distance in sales.js
+							mySalesInfo.setTime(distanceResult);
 						}
 					});					
 			    }
