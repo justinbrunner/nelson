@@ -12,7 +12,8 @@
 		addressField = document.querySelector('.address-control'),
 		quarrySelected = false,
 		quarryLocation,
-		cusIcon = "images/markers.svg";
+		cusIcon = "images/pickup.png",
+		mapRenderers = [];
 
 	var locationArray = {
 		burlington : [43.402310, -79.878961],
@@ -101,9 +102,24 @@
 							avoidTolls: true
 						};
 
+					[].forEach.call(mapRenderers, function(renderer) {
+						renderer.setMap(null);
+					});
+
 					directionsService.route(request, function(result, status) {
 						if (status == google.maps.DirectionsStatus.OK) {
-							directionsDisplay.setDirections(result);
+							 for (var i = 0, len = result.routes.length; i < len; i++) {
+				                var renderer = new google.maps.DirectionsRenderer({
+				                    map: map,
+				                    directions: result,
+				                    routeIndex: i
+				                });
+
+				                mapRenderers.push(renderer);
+							// console.log(result);
+							// for (var i=0, len = result.routes.length; i<len; i++) {
+							// directionsDisplay.setDirections(result[i]);
+							}
 						}
 					});
 
@@ -118,7 +134,9 @@
 						if (status !== google.maps.DistanceMatrixStatus.OK) {
 							console.log('Error! which was: ' + status);
 						} else {
-							console.log(response, status);
+							//console.log(response, status);
+							var distanceResult = response.rows[0].elements[0].distance.text;
+							console.log(distanceResult);
 						}
 					});					
 			    }
@@ -130,6 +148,11 @@
 	}
 
 	function changeMapLocation(e) {
+		if (mapRenderers.length) {
+			[].forEach.call(mapRenderers, function(renderer) {
+				renderer.setMap(null);
+			});
+		}
 		var arrayIndex = e.currentTarget.value;
 
 		var newCoords = {
