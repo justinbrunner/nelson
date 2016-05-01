@@ -9,20 +9,10 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
 <body>
-<header>
-	<div class="row">
-    	<div class="large-2 columns">
-        	<img src="images/Nelson_Aggregate_logo.png" alt="Nelson Aggregate Logo">
-        </div>
-        <div class="large-10 columns">
-        	<h1>Welcome to Nelson Aggregate Trucking Rates</h1>
-        </div>
-    </div>
-</header>
 <section class="truckingCal">
 	<div class="row">
-    	<div class="calInput">
-    	<div class="medium-4 large-3 columns">
+    	<div>
+    	<div class="large-3 columns shift shadow">
         	<hr>
             <h2>DELIVERY INFORMATION</h2>
             <!--<ul class="accordion" data-accordion data-allow-all-closed="true">
@@ -49,6 +39,7 @@
                          <hr>
             	  	<!--</div>
  				</li>-->
+                <div id="cal">
                 <ul class="accordion" data-accordion data-allow-all-closed="true">
             	<li class="accordion-item" data-accordion-item>
     				<a href="#" class="accordion-title">Tri-Axle Rates</a>
@@ -167,14 +158,22 @@
                         <p>Rate(high): $<span id="tra_rate_high">0</span></p>
                       </div>
                    </li>
-            	</ul>
-                
+            	</ul> 
+                </div>
         </div>
-        <div class="medium-8 large-9 columns">
-        	<div class="flex-video">
-        		<div id="map_canvas"></div>
+        </div>
+        <div class="large-9 columns">
+            <div class="row">	
+                <div class="large-2 large-centered columns title">
+                    <h2>NELSON</h2>
+                    <p>TRUCKING RATES</p>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="flex-video">
+                    <div id="map_canvas"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -182,7 +181,7 @@
 
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/foundation.min.js"></script>
-<!--<script src="js/layout.js"></script>-->
+<script src="js/layout.js"></script>
 
 <script type="text/javascript">
         $(document).ready(function () {
