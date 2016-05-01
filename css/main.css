@@ -87,7 +87,8 @@ header {
   -o-box-shadow: inset -10px 1px 11px -4px #000000;
   box-shadow: inset -10px 1px 11px -4px #000000;
   height: 0px;
-  overflow: scroll; }
+  overflow: auto;
+  overflow-x: hidden; }
 
 p {
   line-height: 1.6;
