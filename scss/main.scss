@@ -106,10 +106,10 @@ header {
 }
 
 .shadow{
-	box-shadow: inset -10px 1px 11px -4px #000000;
 	-webkit-box-shadow: inset -10px 1px 11px -4px #000000;
 	-moz-box-shadow: inset -10px 1px 11px -4px #000000;
 	-o-box-shadow: inset -10px 1px 11px -4px #000000;
+	box-shadow: inset -10px 1px 11px -4px #000000;
 	height: 0px;
 	overflow:scroll;
 }
@@ -145,6 +145,10 @@ a {
 	color: #fff;
     background-color: #1585cf;
 	}  
+}
+
+.flex-video {
+	padding-bottom: 70%;
 }
 
 #map_canvas { 
