@@ -1,12 +1,15 @@
 // JavaScript Document
 (function() {
 	"use strict";
-	var sw = document.querySelector(".shadow"), map = document.querySelector("#map_canvas");
+	var sw = document.querySelector(".shadow"), mq = window.matchMedia( "(min-width: 800px)" );
 	
 	function gwh() {
 		var vh = window.innerHeight;
-		sw.style.height = vh+"px";
-		map.style.height = (vh-102)+"px";	
+		if (mq.matches) {
+		  sw.style.height = vh+"px";
+		}else{
+			sw.style.height = "100%";
+		}
 	}
 	
 	window.addEventListener("load", gwh, false); 

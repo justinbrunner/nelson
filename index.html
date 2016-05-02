@@ -11,39 +11,44 @@
 <body>
 <section class="truckingCal">
 	<div class="row">
-    	<div>
-    	<div class="large-3 columns shift shadow">
-        	<hr>
-            <h2>DELIVERY INFORMATION</h2>
-            <!--<ul class="accordion" data-accordion data-allow-all-closed="true">
-            	<li class="accordion-item is-active" data-accordion-item>
-    				<a href="#" class="accordion-title">Delivery Info</a>
-    				<div class="accordion-content" data-tab-content>-->
-                    <select id="location">
-                        <option value="" disabled selected>Select A Nelson location...</option>
-                        <option value="burlington">Burlington Quarry</option>
-                        <option value="lincoln">Lincoln Quarry</option>
-                        <option value="uhthoff">Uhthoff Quarry</option>
-                        <option value="oneida">Oneida Quarry</option>
-                        <option value="waynco">Waynco Limited</option>
-                    </select>
-                         <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
-                         <select id="wTime">
-                             <option value="" disabled selected>Select number of working hours...</option>
-                             <option value="480">8 Hours</option>
-                             <option value="540">9 Hours</option>
-                             <option value="600">10 Hours</option>
-                             <option value="660">11 Hours</option>
-                             <option value="720">12 Hours</option>
-                         </select>
-                         <hr>
-            	  	<!--</div>
- 				</li>-->
-                <div id="cal">
-                <ul class="accordion" data-accordion data-allow-all-closed="true">
-            	<li class="accordion-item" data-accordion-item>
-    				<a href="#" class="accordion-title">Tri-Axle Rates</a>
-    				<div class="accordion-content" data-tab-content>
+    	<div class="show-for-small-only">
+    	<div class="small-12 columns">
+        	<div class="small-5 small-centered columns title">
+            	<h2>NELSON</h2>
+                <p>TRUCKING RATES</p>
+             </div>
+         </div>
+    </div>
+    <div>
+    <div class="large-3 columns shift shadow">
+        <hr>
+        <h2>DELIVERY INFORMATION</h2>
+        <select id="location">
+                    <option value="" disabled selected>Select A Nelson location...</option>
+                    <option value="burlington">Burlington Quarry</option>
+                    <option value="lincoln">Lincoln Quarry</option>
+                    <option value="uhthoff">Uhthoff Quarry</option>
+                    <option value="oneida">Oneida Quarry</option>
+                    <option value="waynco">Waynco Limited</option>
+                </select>
+        <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
+        <select id="wTime">
+                         <option value="" disabled selected>Select number of working hours...</option>
+                         <option value="480">8 Hours</option>
+                         <option value="540">9 Hours</option>
+                         <option value="600">10 Hours</option>
+                         <option value="660">11 Hours</option>
+                         <option value="720">12 Hours</option>
+                     </select>
+        <hr>
+        <div id="mb">
+        	
+        </div>
+        <div id="cal">
+            <ul class="accordion" data-accordion data-allow-all-closed="true">
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Tri-Axle Rates</a>
+                    <div class="accordion-content" data-tab-content>
                         <select id="price_tri">
                             <option value="" disabled selected>Select a tri-axle rate...</option>
                             <option value="95">$95.00</option>
@@ -92,8 +97,8 @@
                         <p>Rate(low): $<span id="tri_rate_low">0</span></p>
                         <p>Rate(high): $<span id="tri_rate_high">0</span></p>
                 <!--</div>-->
-                	</div>
- 				</li>
+                    </div>
+                </li>
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Trailer Rates</a>
                     <div class="accordion-content" data-tab-content>
@@ -157,32 +162,27 @@
                         <p>Rate(low): $<span id="tra_rate_low">0</span></p>
                         <p>Rate(high): $<span id="tra_rate_high">0</span></p>
                       </div>
-                   </li>
-            	</ul> 
-                </div>
-        </div>
-        </div>
-        <div class="large-9 columns">
-            <div class="row">	
-                <div class="large-2 large-centered columns title">
-                    <h2>NELSON</h2>
-                    <p>TRUCKING RATES</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="flex-video">
-                    <div id="map_canvas"></div>
-                </div>
-            </div>
+                </li>
+            </ul> 
         </div>
     </div>
+    <div class="large-9 columns">
+        <div class="row hide-for-small-only">	
+            <div class="large-2 large-centered columns title">
+                <h2>NELSON</h2>
+                <p>TRUCKING RATES</p>
+            </div>
+        </div>
+        <div id="dt">
+            
+        </div>
+        <script src="js/layout.js"></script>
+    </div>
+   </div>
+   </div>
 </section>
-
-
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/foundation.min.js"></script>
-<script src="js/layout.js"></script>
-
 <script type="text/javascript">
         $(document).ready(function () {
         $(document).foundation();

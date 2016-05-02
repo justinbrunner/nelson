@@ -1,7 +1,15 @@
 (function() {
 	"use strict";
-
-	var map = new google.maps.Map(document.querySelector('#map_canvas')),
+	
+	var mq = window.matchMedia( "(min-width: 800px)" ), map, mb = document.querySelector("#mb"), dt = document.querySelector("#dt");
+	if (mq.matches) {
+		console.log("dt");
+		dt.innerHTML = '<div class="row"><div class="flex-video"><div id="map_canvas"></div></div></div>';
+	}else{
+		console.log("mb");
+		mb.innerHTML = '<div class="row"><div class="flex-video"><div id="map_canvas"></div></div></div>' ;
+	}
+		var map = new google.maps.Map(document.querySelector('#map_canvas')),
 		directionsService = new google.maps.DirectionsService,
 		distanceMatrix = new google.maps.DistanceMatrixService,
 		geocoder = new google.maps.Geocoder(),
