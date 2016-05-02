@@ -111,7 +111,8 @@ header {
 	-o-box-shadow: inset -10px 1px 11px -4px #000000;
 	box-shadow: inset -10px 1px 11px -4px #000000;
 	height: 0px;
-	overflow:scroll;
+	overflow-y:auto;
+	overflow-x: visible;
 }
 
 p {
@@ -148,7 +149,22 @@ a {
 }
 
 .flex-video {
-	padding-bottom: 70%;
+	// padding-bottom: 70%;
+	margin-bottom: 0;
+
+	.route-select {
+		opacity: 0;
+		width: 250px;
+		height: 150px;
+		background-color: rgba(255,255,255,0.7);
+		position: absolute;
+		z-index: 50;
+		left: 10px;
+		top: 50px;
+		padding: 8px 12px;
+		border: 2px solid white;
+		transition: opacity 0.5s ease;
+	}
 }
 
 #map_canvas { 
@@ -157,4 +173,6 @@ a {
   width: 100%;
   height: 100%;
 }
+
+.show-routes { opacity: 1 !important; }
 

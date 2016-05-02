@@ -6,7 +6,7 @@
 	function gwh() {
 		var vh = window.innerHeight;
 		sw.style.height = vh+"px";
-		map.style.height = (vh-102)+"px";	
+		//map.style.height = (vh-102)+"px";	
 	}
 	
 	window.addEventListener("load", gwh, false); 

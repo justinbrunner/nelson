@@ -19,14 +19,15 @@
             	<li class="accordion-item is-active" data-accordion-item>
     				<a href="#" class="accordion-title">Delivery Info</a>
     				<div class="accordion-content" data-tab-content>-->
-                    <select id="location">
+                    <!-- <select id="location">
                         <option value="" disabled selected>Select A Nelson location...</option>
                         <option value="burlington">Burlington Quarry</option>
                         <option value="lincoln">Lincoln Quarry</option>
                         <option value="uhthoff">Uhthoff Quarry</option>
                         <option value="oneida">Oneida Quarry</option>
                         <option value="waynco">Waynco Limited</option>
-                    </select>
+                    </select> -->
+                        <input class="address-control" name="quarry_address" placeholder="Enter a quarry address" value="">
                          <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
                          <select id="wTime">
                              <option value="" disabled selected>Select number of working hours...</option>
@@ -171,6 +172,9 @@
             </div>
             <div class="row">
                 <div class="flex-video">
+                    <div class="route-select">
+                        <p>Select Route:</p>
+                    </div>
                     <div id="map_canvas"></div>
                 </div>
             </div>
