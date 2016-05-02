@@ -7,155 +7,161 @@ $header3: 18px;
 $marginSpacing: 15px;
 $header-color: #fff;
 
-body {
-	padding: 0;
-  	margin: 0;
-  	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  	font-weight: normal;
-  	line-height: 1.5;
-  	color: #0a0a0a;
-  	background: #fefefe;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
-	font-size: 14px;	
+@media screen and (min-width: 50em) {
+	body {
+			font-size: 14px;	
+		}
+		
+	.title p {
+		padding-bottom: 15px;
+	}
+	
+	.shift {
+		padding-top: 36px;
+	}
 }
 
-header h1 {
-	margin-top: 43px;
-	font-size: $header1;
-	font-weight: 300;
-	color: #E4E4E4;
-}
+	body {
+		padding: 0;
+		margin: 0;
+		font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+		font-weight: normal;
+		line-height: 1.5;
+		color: #0a0a0a;
+		background: #fefefe;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		font-size: 12px;	
+	}
+	
+	header h1 {
+		margin-top: 43px;
+		font-size: $header1;
+		font-weight: 300;
+		color: #E4E4E4;
+	}
+	
+	input {
+		padding: 8px;
+		width: 100%;
+		margin-bottom: 15px;	
+	}
+	
+	select {
+		height: 2.2375rem;
+		padding: 0.35rem;	
+		font-size: .85rem;
+	}
+	
+	.title h2 {
+		font-size: $header1;
+		font-weight: 300;
+		color: $header-color;
+		letter-spacing: 3px;	
+		padding: 0;
+		margin: 0;
+	}
+	
+	h2 {
+		font-size: $header2;
+		color: $header-color;
+		font-weight: 300;
+	}
+	
+	h3 {
+		font-size: $header2;
+		font-weight: 300;
+		margin-top: $marginSpacing;		
+	}
+	
+	hr {
+		border-top: 1px solid #2d96d3;
+		border-bottom: none;
+	}
+	
+	.title {
+		color: #fff;	
+		padding-top: 18px;
+		text-align: center;
+	}
+	
+	.title p {
+		border-top: dotted 1px #565656;	
+		color: #565656;
+		padding-bottom: 0px;
+	}
+	
+	.shift {
+		padding-top: 18px;
+	}
+	
+	.truckCon {
+		background: #292929;
+		padding: 10px;
+		margin-bottom: 5px;	
+	}
+	
+	header {
+		background: #292929;
+		padding: 10px 0 10px 0;	
+	}
+	
+	.truckingCal {
+		background-color: #333;
+	}
+	
+	.shadow{
+		-webkit-box-shadow: inset -10px 1px 11px -4px #000000;
+		-moz-box-shadow: inset -10px 1px 11px -4px #000000;
+		-o-box-shadow: inset -10px 1px 11px -4px #000000;
+		box-shadow: inset -10px 1px 11px -4px #000000;
+		height: 0px;
+		overflow: auto;
+		overflow-x: hidden;
+	}
+	
+	p {
+		line-height: 1.6;
+		margin-bottom: .5rem;	
+	}
+	
+	a {
+	  color: #fff;
+	  text-decoration: none;
+	  line-height: inherit;
+	  cursor: pointer; 
+	  &:hover, &:focus { 
+		color: #1585cf;
+	  }
+	  &:visited {
+			color: #fff;  
+	  }
+	}
+	
+	.accordion-title {
+	  display: block;
+	  padding: 1.25rem .55rem;
+	  line-height: 1;
+	  font-size: 0.95rem;
+	  color: #1585cf;
+	  position: relative;
+	  background: #292929;
+	  border-bottom: 1px solid #e6e6e6; 
+		&:hover, &:focus {
+		color: #fff;
+		background-color: #1585cf;
+		}  
+	}
+	
+	.flex-video {
+		padding-bottom: 70%;
+	}
+	
+	#map_canvas { 
+	  position: absolute;
+	  z-index: 0; 
+	  width: 100%;
+	  height: 100%;
+	}
 
-input {
-	padding: 8px;
-	width: 100%;
-	margin-bottom: 15px;	
-}
-
-select {
-	height: 2.2375rem;
-  	padding: 0.35rem;	
-	font-size: .85rem;
-}
-
-.title h2 {
-	font-size: $header1;
-	font-weight: 300;
-	color: $header-color;
-	letter-spacing: 3px;	
-	padding: 0;
-	margin: 0;
-}
-
-h2 {
-	font-size: $header2;
-	color: $header-color;
-	font-weight: 300;
-}
-
-h3 {
-	font-size: $header2;
-	font-weight: 300;
-	margin-top: $marginSpacing;		
-}
-
-hr {
-	border-top: 1px solid #2d96d3;
-	border-bottom: none;
-}
-
-.title {
-	color: #fff;	
-	padding-top: 18px;
-	text-align: center;
-}
-
-.title p {
-	border-top: dotted 1px #565656;	
-	color: #565656;
-	padding-bottom: 15px;
-}
-
-.shift {
-	padding-top: 36px;
-	padding-right: 30px;	
-}
-
-.hide {
-	display: none;	
-}
-
-.show {
-	display: block;	
-}
-
-.truckCon {
-	background: #292929;
-	padding: 10px;
-	margin-bottom: 5px;	
-}
-
-header {
-	background: #292929;
-	padding: 10px 0 10px 0;	
-}
-
-.truckingCal {
-	background-color: #333;
-}
-
-.shadow{
-	-webkit-box-shadow: inset -10px 1px 11px -4px #000000;
-	-moz-box-shadow: inset -10px 1px 11px -4px #000000;
-	-o-box-shadow: inset -10px 1px 11px -4px #000000;
-	box-shadow: inset -10px 1px 11px -4px #000000;
-	height: 0px;
-	overflow: auto;
-	overflow-x: hidden;
-}
-
-p {
-	line-height: 1.6;
-  	margin-bottom: .5rem;	
-}
-
-a {
-  color: #fff;
-  text-decoration: none;
-  line-height: inherit;
-  cursor: pointer; 
-  &:hover, &:focus { 
-    color: #1585cf;
-  }
-  &:visited {
-		color: #fff;  
-  }
-}
-
-.accordion-title {
-  display: block;
-  padding: 1.25rem .55rem;
-  line-height: 1;
-  font-size: 0.95rem;
-  color: #1585cf;
-  position: relative;
-  background: #292929;
-  border-bottom: 1px solid #e6e6e6; 
-	&:hover, &:focus {
-	color: #fff;
-    background-color: #1585cf;
-	}  
-}
-
-.flex-video {
-	padding-bottom: 70%;
-}
-
-#map_canvas { 
-  position: absolute;
-  z-index: 0; 
-  width: 100%;
-  height: 100%;
-}
 
