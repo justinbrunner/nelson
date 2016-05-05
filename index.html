@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to the Nelson Trucking Rates</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -34,10 +35,20 @@
             <option value="720">12 Hours</option>
         </select>
         <hr>
-        <div id="mb">
-        	
+
+        <div id="mb"></div>
+        
+        <div class="select-route"> <!-- hidden -->
+            <h5 class="select-route-header">
+                Select Route:
+            </h5>
+            <ul class="route-wrapper no-bullet"></ul>
         </div>
+
         <div id="cal">
+            <div class="block-ui text-center hide">
+                <i class="fa fa-times-circle-o"></i>
+            </div>
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Tri-Axle Rates</a>

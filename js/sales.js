@@ -202,15 +202,16 @@ var mySalesInfo = (function() {
 	}
 
 	//Listeners
-	wTime.addEventListener("change", selectOption, false);
-	priceTri.addEventListener("change", selectOption, false);
-	priceTra.addEventListener("change", selectOption, false);
-	loadTri.addEventListener("change", selectOption, false);
-	dumpTri.addEventListener("change", selectOption, false);
-	loadTra.addEventListener("change", selectOption, false);
-	dumpTra.addEventListener("change", selectOption, false);
-	avgTri.addEventListener("change", selectOption, false);
-	avgTra.addEventListener("change", selectOption, false);
+	// wTime.addEventListener("change", selectOption, false);
+	// priceTri.addEventListener("change", selectOption, false);
+	// priceTra.addEventListener("change", selectOption, false);
+	// loadTri.addEventListener("change", selectOption, false);
+	// dumpTri.addEventListener("change", selectOption, false);
+	// loadTra.addEventListener("change", selectOption, false);
+	// dumpTra.addEventListener("change", selectOption, false);
+	// avgTri.addEventListener("change", selectOption, false);
+	// avgTra.addEventListener("change", selectOption, false);
+	$('select').on('change', selectOption);
 
 	return {
 		setTime : setTravelTime
