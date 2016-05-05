@@ -5,6 +5,7 @@
 	
 	function gwh() {
 		var vh = window.innerHeight;
+
 		if (mq.matches) {
 		  sw.style.height = vh+"px";
 		}else{

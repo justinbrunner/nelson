@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to the Nelson Trucking Rates</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -23,28 +24,31 @@
     <div class="large-3 columns shift shadow">
         <hr>
         <h2>DELIVERY INFORMATION</h2>
-        <select id="location">
-                    <option value="" disabled selected>Select A Nelson location...</option>
-                    <option value="burlington">Burlington Quarry</option>
-                    <option value="lincoln">Lincoln Quarry</option>
-                    <option value="uhthoff">Uhthoff Quarry</option>
-                    <option value="oneida">Oneida Quarry</option>
-                    <option value="waynco">Waynco Limited</option>
-                </select>
+        <input class="address-control" name="quarry_address" placeholder="Enter a quarry address" value="">
         <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
         <select id="wTime">
-                         <option value="" disabled selected>Select number of working hours...</option>
-                         <option value="480">8 Hours</option>
-                         <option value="540">9 Hours</option>
-                         <option value="600">10 Hours</option>
-                         <option value="660">11 Hours</option>
-                         <option value="720">12 Hours</option>
-                     </select>
+            <option value="" disabled selected>Select number of working hours...</option>
+            <option value="480">8 Hours</option>
+            <option value="540">9 Hours</option>
+            <option value="600">10 Hours</option>
+            <option value="660">11 Hours</option>
+            <option value="720">12 Hours</option>
+        </select>
         <hr>
-        <div id="mb">
-        	
+
+        <div id="mb"></div>
+        
+        <div class="select-route"> <!-- hidden -->
+            <h5 class="select-route-header">
+                Select Route:
+            </h5>
+            <ul class="route-wrapper no-bullet"></ul>
         </div>
+
         <div id="cal">
+            <div class="block-ui text-center hide">
+                <i class="fa fa-times-circle-o"></i>
+            </div>
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Tri-Axle Rates</a>
