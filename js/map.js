@@ -36,7 +36,7 @@
 		cusIconStart = "images/pickup.png",
 		cusIconEnd = "images/unload.png",
 		mapRenderers = [],
-		routeSelect = document.querySelector('.route-select'),
+		routeSelect = document.querySelector('.select-route'),
 		controlsBlocker = document.querySelector('.block-ui');
 
 	var locationArray = {
@@ -237,8 +237,6 @@
 	function createControls() {
 		var controlsContainer = document.querySelector('.route-wrapper');
 
-		routeSelect.style.display = "block";
-
 		[].forEach.call(mapRenderers, function(button, index) {
 			var routeControl = document.createElement('li'),
 				routeControlText = document.createTextNode('Route ' + (index + 1)),
@@ -255,6 +253,7 @@
 			controlsContainer.appendChild(routeControl);
 		});
 
+		routeSelect.style.visibility = "visible";
 		document.querySelectorAll('.route-select')[0].classList.add('active-route');
 		controlsContainer.parentNode.classList.remove('collapse-route-select');
 		controlsBlocker.classList.add('show-ui');

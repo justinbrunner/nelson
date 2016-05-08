@@ -154,7 +154,7 @@ a {
   opacity: 1 !important; }
 
 .select-route {
-  display: none;
+  visibility: hidden;
   padding: 0.8rem .55rem 0;
   line-height: 1;
   font-size: 0.95rem;
