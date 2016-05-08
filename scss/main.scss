@@ -87,6 +87,7 @@ $header-color: #fff;
 		width: 100%;
 		height: 100%;
 		z-index: 40;
+		transition: opacity .7s ease;
 		background: repeating-linear-gradient(
 		  -55deg,
 		  rgba(255,255,255,0.85),//#222,
@@ -104,6 +105,8 @@ $header-color: #fff;
   			text-shadow: 0 0 4px #ccc;
 		}
 	}
+
+	.show-ui { opacity: 0; }
 	
 	.title {
 		color: #fff;	
@@ -181,20 +184,6 @@ $header-color: #fff;
 	
 	.flex-video {
 		padding-bottom: 70%;
-
-		// .route-select {
-		// 	opacity: 0;
-		// 	width: 250px;
-		// 	height: 150px;
-		// 	background-color: rgba(255,255,255,0.7);
-		// 	position: absolute;
-		// 	z-index: 50;
-		// 	left: 10px;
-		// 	top: 50px;
-		// 	padding: 8px 12px;
-		// 	border: 2px solid white;
-		// 	transition: opacity 0.5s ease;
-		// }
 	}
 	
 	#map_canvas { 
@@ -207,7 +196,7 @@ $header-color: #fff;
 .show-routes { opacity: 1 !important; }
 
 .select-route {
-	display: block;
+	display: none;
 	padding: 0.8rem .55rem 0;
 	line-height: 1;
 	font-size: 0.95rem;
@@ -216,9 +205,14 @@ $header-color: #fff;
 	background: #292929;
 	border: 1px solid #e6e6e6;
 	margin-bottom: 0.8rem;
+	max-height: 400px;
+	transition: max-height 1.5s ease;
+	overflow: hidden;
 
 	span { display: block; }
 }
+
+.collapse-route-select { max-height: 0; }
 
 .route-wrapper li {
 	padding: 10px;

@@ -1,19 +1,26 @@
 (function() {
 	"use strict";
 
-	// console.log("#" + Math.random().toString(16).slice(2, 8));
-	
-	var mq = window.matchMedia( "(min-width: 800px)" ), map, mb = document.querySelector("#mb"), dt = document.querySelector("#dt");
-	if (mq.matches) {
-		console.log("dt");
-		dt.innerHTML = '<div class="flex-video"><div id="map_canvas"></div></div>';
-	}else{
-		console.log("mb");
-		mb.innerHTML = '<div class="flex-video"><div id="map_canvas"></div></div>' ;
-	}
-
 	var map = new google.maps.Map(document.querySelector('#map_canvas')),
-		directionsService = new google.maps.DirectionsService,
+		mapParent = document.querySelector('.flex-video'),
+		mq = window.matchMedia( "(min-width: 800px)" ), 
+		mb = document.querySelector("#mb"), 
+		dt = document.querySelector("#dt");
+
+	mq.addListener(moveMap);
+	moveMap(mq);
+
+	function moveMap(mq) {
+		if (mq.matches) {
+			console.log("dt");
+			dt.appendChild(mapParent);
+		} else {
+			console.log("mb");
+			mb.appendChild(mapParent);
+		}
+	}	
+
+	var directionsService = new google.maps.DirectionsService,
 		distanceMatrix = new google.maps.DistanceMatrixService,
 		geocoder = new google.maps.Geocoder(),
 		marker,
@@ -29,7 +36,8 @@
 		cusIconStart = "images/pickup.png",
 		cusIconEnd = "images/unload.png",
 		mapRenderers = [],
-		routeSelect = document.querySelector('.route-select');
+		routeSelect = document.querySelector('.route-select'),
+		controlsBlocker = document.querySelector('.block-ui');
 
 	var locationArray = {
 		burlington : [43.402310, -79.878961],
@@ -153,7 +161,7 @@
 				                    routeIndex: i,
 				                    suppressMarkers: true,
 				                    polylineOptions : {
-				                    	strokeColor: "rgba(150,150,150,0.85)",
+				                    	strokeColor: "rgba(150,150,150,0.75)",
 				                    	strokeWeight: lineWeight
 				                    }
 				                });
@@ -177,10 +185,7 @@
 				            	routeDistances.push(result.routes[r].legs[0].distance.text);
 				            }
 
-				            console.log('the total distance for the first route is: ' + result.routes[0].legs[0].distance.text + "km");
-
-				            console.log(routeDistances);
-
+				            mySalesInfo.newTime = parseFloat(routeDistances[0]);
 				            createControls();
 						}
 					});
@@ -205,7 +210,7 @@
 			// reset all the route colors
 			mapRenderers[i].setOptions({
 	            polylineOptions : {
-	            	strokeColor: "rgba(150,150,150,0.85)",
+	            	strokeColor: "rgba(150,150,150,0.75)",
 	            	zIndex : 0,
 	            	strokeWeight: lineWeight
 	            }
@@ -226,10 +231,13 @@
         });
 
         mapRenderers[newRouteIndex].setMap(map);
+        mySalesInfo.newTime = parseFloat(routeDistances[newRouteIndex]);
 	}
 
 	function createControls() {
 		var controlsContainer = document.querySelector('.route-wrapper');
+
+		routeSelect.style.display = "block";
 
 		[].forEach.call(mapRenderers, function(button, index) {
 			var routeControl = document.createElement('li'),
@@ -248,29 +256,13 @@
 		});
 
 		document.querySelectorAll('.route-select')[0].classList.add('active-route');
+		controlsContainer.parentNode.classList.remove('collapse-route-select');
+		controlsBlocker.classList.add('show-ui');
 	}
 
+	controlsBlocker.addEventListener('transitionend', function() { controlsBlocker.style.display = "none"; }, false);
+
 	
-	// function changeMapLocation(e) {
-	// 	if (mapRenderers.length) {
-	// 		[].forEach.call(mapRenderers, function(renderer) {
-	// 			renderer.setMap(null);
-	// 		});
-	// 	}
-	// 	var arrayIndex = e.currentTarget.value;
-
-	// 	var newCoords = {
-	// 		coords : {
-	// 			latitude: locationArray[arrayIndex][0],
-	// 			longitude: locationArray[arrayIndex][1]
-	// 		}
-	// 	};
-
-	// 	setMapLocation(newCoords);
-	// 	quarrySelected = true;
-	// 	quarryLocation = newCoords;
-	// }
-
 	[].forEach.call(addressFields, function(field) {
 		field.addEventListener('blur', geoCodeAddress, false);
 	});
