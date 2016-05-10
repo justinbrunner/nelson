@@ -25,11 +25,14 @@
         <h2>DELIVERY INFORMATION</h2>
         <input class="address-control" name="quarry_address" placeholder="Enter a quarry address" value="">
         <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
+        <!--Use this to trigger map call to get time -->
+        <a href="#" name="create_route" class="button radius expanded">Create Route</a>
+        <!-- -->
         <select id="wTime">
             <option value="" disabled selected>Select number of working hours...</option>
             <option value="480">8 Hours</option>
             <option value="540">9 Hours</option>
-            <option value="600">10 Hours</option>
+            <option value="600" selected>10 Hours</option>
             <option value="660">11 Hours</option>
             <option value="720">12 Hours</option>
         </select>
@@ -54,7 +57,7 @@
                     <div class="accordion-content" data-tab-content>
                         <select id="price_tri">
                             <option value="" disabled selected>Select a tri-axle rate...</option>
-                            <option value="95">$95.00</option>
+                            <option value="95" selected>$95.00</option>
                             <option value="100">$100.00</option>
                             <option value="105">$105.00</option>
                             <option value="110">$110.00</option>
@@ -83,7 +86,7 @@
                         <p id="triTotal"></p>
                         <select id="avg_tri">
                             <option value="" disabled selected>Select a tri-axle average weight...</option>
-                            <option value="21.5">21.5</option>
+                            <option value="21.5" selected>21.5</option>
                             <option value="22">22</option>
                             <option value="22.5">22.5</option>
                             <option value="23">23</option>
