@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to the Nelson Trucking Rates</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    <title>Welcome to the Nelson Trucking Rates</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -12,7 +11,7 @@
 <body>
 <section class="truckingCal">
 	<div class="row">
-    	<div class="show-for-small-only">
+    	<div class="show-for-small-only show-for-portrait">
     	<div class="small-12 columns">
         	<div class="small-5 small-centered columns title">
             	<h2>NELSON</h2>
@@ -39,15 +38,15 @@
         <div id="mb"></div>
         
         <div class="select-route collapse-route-select"> <!-- hidden -->
-            <h5 class="select-route-header">
+            <h2 class="select-route-header">
                 Select Route:
-            </h5>
+            </h2>
             <ul class="route-wrapper no-bullet"></ul>
         </div>
 
         <div id="cal">
             <div class="block-ui text-center">
-                <i class="fa fa-times-circle-o"></i>
+                <!--<i class="fa fa-times-circle-o"></i>-->
             </div>
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
@@ -171,7 +170,7 @@
         </div>
     </div>
     <div class="large-9 columns">
-        <div class="row hide-for-small-only">	
+        <div class="row hide-for-small-only hide-for-portrait">	
             <div class="large-2 large-centered columns title">
                 <h2>NELSON</h2>
                 <p>TRUCKING RATES</p>
@@ -182,7 +181,6 @@
                 <div id="map_canvas"></div>
             </div>
         </div>
-        <script src="js/layout.js"></script>
     </div>
    </div>
    </div>
