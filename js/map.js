@@ -128,7 +128,9 @@
 		        	}					
 
 		        	dropPin(results[0].geometry.location, marker);
-		        }	
+		        }
+
+		        if (deliveryAddress && quarryLocation) { $('.create-route-button').removeAttr('disabled'); }	
 
 			} else {
 		    	// handle this error somehow => with a Foundation custom element perhaps?
