@@ -54,6 +54,7 @@ var mySalesInfo = (function() {
 	var perIncrease_tra; // = (roundTrip_tra * 1.10).toFixed(1); // C11
 
 	function calcTimeValues(travelTime) {
+		travelTime = Math.ceil(travelTime/60);
 		roundTrip_tri = travelTime * 2; // B10
 		roundTrip_tra = travelTime * 2; // C10
 		perIncrease_tri = (roundTrip_tri * 1.10).toFixed(1); // B11
