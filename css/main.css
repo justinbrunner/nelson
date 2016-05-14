@@ -185,9 +185,34 @@ a {
   background-color: #2d96d3 !important; }
 
 .route-select {
-  float: right;
-  width: 70%;
-  margin-bottom: 0;
+  width: 100%;
+  margin-bottom: 8px;
   background-color: #969696; }
+
+.alt-routes button:last-of-type {
+  margin-bottom: 0; }
+
+.create-route-button {
+  border: 1px solid #e6e6e6;
+  margin-top: 30px;
+  padding: 1.25em 1em;
+  font-size: 0.95rem; }
+
+.hours-options li {
+  cursor: pointer;
+  padding: 0.5rem 1rem; }
+.hours-options li:hover {
+  background-color: rgba(220, 170, 88, 0.85); }
+.hours-options li:first-child {
+  margin-top: 0; }
+.hours-options li:last-child {
+  margin-bottom: 0; }
+
+.hours-content {
+  padding: 0; }
+
+.hours-badge {
+  margin-left: 8px;
+  font-style: italic; }
 
 /*# sourceMappingURL=main.css.map */

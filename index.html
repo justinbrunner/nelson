@@ -25,26 +25,44 @@
         <h2>DELIVERY INFORMATION</h2>
         <input class="address-control" name="quarry_address" placeholder="Enter a quarry address" value="">
         <input class="address-control" name="delivery_address" placeholder="Enter a delivery address" value="">
-        <!--Use this to trigger map call to get time -->
-        <a href="#" name="create_route" class="button radius expanded">Create Route</a>
         <!-- -->
-        <select id="wTime">
+       <!--  <select id="wTime">
             <option value="" disabled selected>Select number of working hours...</option>
             <option value="480">8 Hours</option>
             <option value="540">9 Hours</option>
             <option value="600" selected>10 Hours</option>
             <option value="660">11 Hours</option>
             <option value="720">12 Hours</option>
-        </select>
+        </select> -->
+        <ul class="accordion" data-accordion data-allow-all-closed="true">
+            <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Select Working Hours<span class="hours-badge"></span></a>
+                <div class="accordion-content hours-content" data-tab-content>
+                    <ul class="no-bullet hours-options">
+                        <li>8 Hours</li>
+                        <li>9 Hours</li>
+                        <li>10 Hours</li>
+                        <li>11 Hours</li>
+                        <li>12 Hours</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <!--Use this to trigger map call to get time -->
+        <button name="create_route" disabled class="button expanded create-route-button">Create Route</button>
+
         <hr>
 
         <div id="mb"></div>
-        
-        <div class="select-route collapse-route-select"> <!-- hidden -->
-            <h2 class="select-route-header">
-                Select Route:
-            </h2>
-            <ul class="route-wrapper no-bullet"></ul>
+
+        <div class="select-route-accordion">
+            <ul class="accordion" data-accordion data-allow-all-closed="true">
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Select Alternate Route</a>
+                    <div class="accordion-content alt-routes" data-tab-content></div>
+                </li>
+            </ul>
         </div>
 
         <div id="cal">
