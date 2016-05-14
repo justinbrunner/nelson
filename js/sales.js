@@ -46,19 +46,26 @@ var mySalesInfo = (function() {
 	var total_trailer_load_dump = 0; //C6
 	var avgWeight_tra = 0; //C8
 	
-	// Trip Time
-	var travelTime =  14; //B7 -- COMES FROM MAPS API
-	var roundTrip_tri = travelTime * 2; // B10
-	var roundTrip_tra = travelTime * 2; // C10
-	var perIncrease_tri = (roundTrip_tri * 1.10).toFixed(1); // B11
-	var perIncrease_tra = (roundTrip_tra * 1.10).toFixed(1); // C11
+	// Trip Time => this needs to be a function
+	//var travelTime; //B7 -- COMES FROM MAPS API
+	var roundTrip_tri; // = travelTime * 2; // B10
+	var roundTrip_tra; // = travelTime * 2; // C10
+	var perIncrease_tri; // = (roundTrip_tri * 1.10).toFixed(1); // B11
+	var perIncrease_tra; // = (roundTrip_tra * 1.10).toFixed(1); // C11
+
+	function calcTimeValues(travelTime) {
+		roundTrip_tri = travelTime * 2; // B10
+		roundTrip_tra = travelTime * 2; // C10
+		perIncrease_tri = (roundTrip_tri * 1.10).toFixed(1); // B11
+		perIncrease_tra = (roundTrip_tra * 1.10).toFixed(1); // C11
+	}
 	
 	// Total Time
 	var totalCycleTime_tri; //B12
 	var totalCycleTime_tra; //C12
 	
 	//Trips per 10 hour day //B&C 13
-	var workingDay;
+	var workingDay; // NOW COMES FROM MAPS API
 	var trips_tri;
 	var trips_tra;
 	//Rounded trip values B&C 14
@@ -91,10 +98,10 @@ var mySalesInfo = (function() {
 		var selectValue = evt.currentTarget.value;
 		
 		switch(target) {
-			case "wTime":
-				workingDay = selectValue;
-				console.log("Tri-axle: "+workingDay);
-				break;
+			// case "wTime":
+			// 	workingDay = selectValue;
+			// 	console.log("Tri-axle: "+workingDay);
+			// 	break;
 			case "price_tri":
 				triAxlePrice = selectValue;
 				console.log("Tri-axle: "+triAxlePrice);
@@ -199,7 +206,18 @@ var mySalesInfo = (function() {
 
 	$('select').on('change', selectOption);
 
+	function setTime(newTime) {
+		//travelTime = newTime;
+
+		calcTimeValues(newTime);
+	}
+
+	function setWorkingHours(newHours) {
+		workingDay = newHours;
+	}
+
 	return {
-		newTime : travelTime
+		setNewTime : setTime,
+		newWorkingHours : setWorkingHours
 	}
 })();
