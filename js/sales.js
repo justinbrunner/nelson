@@ -58,7 +58,7 @@ var mySalesInfo = (function() {
 	var totalCycleTime_tra; //C12
 	
 	//Trips per 10 hour day //B&C 13
-	var workingDay;
+	var workingDay; // NOW COMES FROM MAPS API
 	var trips_tri;
 	var trips_tra;
 	//Rounded trip values B&C 14
@@ -91,10 +91,10 @@ var mySalesInfo = (function() {
 		var selectValue = evt.currentTarget.value;
 		
 		switch(target) {
-			case "wTime":
-				workingDay = selectValue;
-				console.log("Tri-axle: "+workingDay);
-				break;
+			// case "wTime":
+			// 	workingDay = selectValue;
+			// 	console.log("Tri-axle: "+workingDay);
+			// 	break;
 			case "price_tri":
 				triAxlePrice = selectValue;
 				console.log("Tri-axle: "+triAxlePrice);
@@ -199,7 +199,16 @@ var mySalesInfo = (function() {
 
 	$('select').on('change', selectOption);
 
+	function setTime(newTime) {
+		travelTime = newTime;
+	}
+
+	function setWorkingHours(newHours) {
+		workingDay = newHours;
+	}
+
 	return {
-		newTime : travelTime
+		setNewTime : setTime,
+		newWorkingHours : setWorkingHours
 	}
 })();

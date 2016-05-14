@@ -197,7 +197,7 @@
 		            	routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text, result.routes[r].legs[0].duration.value]);
 		            }
 
-		            mySalesInfo.newTime = Math.round(result.routes[0].legs[0].duration.value);
+		            mySalesInfo.setNewTime(Math.round(result.routes[0].legs[0].duration.value));
 		            createControls();
 				}
 			});
@@ -240,7 +240,7 @@
         });
 
         mapRenderers[newRouteIndex].setMap(map);
-        mySalesInfo.newTime = routeDistances[newRouteIndex][2];//Math.round(result.routes[routeIndex].legs[0].duration.value);
+        mySalesInfo.setNewTime(routeDistances[newRouteIndex][2]);//Math.round(result.routes[routeIndex].legs[0].duration.value);
 	}
 
 	function createControls() {
@@ -289,6 +289,8 @@
 			thisTitle.trigger('click');
 		}, 350);
 
-		thisTitle.find('span').text('( ' + $(this).text().split(' ')[0] + ' hrs )');		
+		thisTitle.find('span').text('( ' + $(this).text().split(' ')[0] + ' hrs )');
+
+		mySalesInfo.newWorkingHours($(this).data('hours'));		
 	});
 })();
