@@ -194,10 +194,10 @@
 		            mapRenderers[0].setMap(map);
 
 		            for (var r = 0, rLength = result.routes.length; r < rLength; r++) {
-		            	routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text]);
+		            	routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text, result.routes[r].legs[0].duration.value]);
 		            }
 
-		            mySalesInfo.newTime = parseFloat(routeDistances[0]);
+		            mySalesInfo.newTime = Math.round(result.routes[0].legs[0].duration.value);
 		            createControls();
 				}
 			});
@@ -240,7 +240,7 @@
         });
 
         mapRenderers[newRouteIndex].setMap(map);
-        mySalesInfo.newTime = parseInt(routeDistances[newRouteIndex][1]);
+        mySalesInfo.newTime = routeDistances[newRouteIndex][2];//Math.round(result.routes[routeIndex].legs[0].duration.value);
 	}
 
 	function createControls() {
