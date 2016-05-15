@@ -18,7 +18,6 @@ var mySalesInfo = (function() {
 		googleTraInc = document.querySelector("#googleTimeTraInc"),
 		tcTime_tri = document.querySelector("#tcTime_tri"),
 		tcTime_tra = document.querySelector("#tcTime_tra"),
-		wTime = document.querySelector("#wTime"),
 		trips_tri_val = document.querySelector("#trips_tri"),
 		tripsRounded_tri_val = document.querySelector("#tripsRounded_tri"),
 		trips_tra_val = document.querySelector("#trips_tra"),
@@ -46,8 +45,7 @@ var mySalesInfo = (function() {
 	var total_trailer_load_dump = 0; //C6
 	var avgWeight_tra = 0; //C8
 	
-	// Trip Time => this needs to be a function
-	//var travelTime; //B7 -- COMES FROM MAPS API
+	var workingDay = 600;
 	var roundTrip_tri; // = travelTime * 2; // B10
 	var roundTrip_tra; // = travelTime * 2; // C10
 	var perIncrease_tri; // = (roundTrip_tri * 1.10).toFixed(1); // B11
@@ -99,10 +97,7 @@ var mySalesInfo = (function() {
 		var selectValue = evt.currentTarget.value;
 		
 		switch(target) {
-			// case "wTime":
-			// 	workingDay = selectValue;
-			// 	console.log("Tri-axle: "+workingDay);
-			// 	break;
+			
 			case "price_tri":
 				triAxlePrice = selectValue;
 				console.log("Tri-axle: "+triAxlePrice);
@@ -208,8 +203,6 @@ var mySalesInfo = (function() {
 	$('select').on('change', selectOption);
 
 	function setTime(newTime) {
-		//travelTime = newTime;
-
 		calcTimeValues(newTime);
 	}
 
