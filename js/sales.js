@@ -33,11 +33,11 @@ var mySalesInfo = (function() {
 		tra_rate_high  = document.querySelector("#tra_rate_high");
 	
 	// Tri-Axle
-	var triAxlePrice = 0; //B3
+	var triAxlePrice = 95; //B3
 	var loadTime_ta = 0; //B4
 	var dumpTime_ta = 0; //B5
 	var total_tri_load_dump = 0; //B6
-	var avgWeight_tri = 0; //B8
+	var avgWeight_tri = 21.5; //B8
 	
 	// Trailer
 	var trailerPrice = 0; //C3
