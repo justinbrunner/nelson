@@ -240,7 +240,7 @@
         });
 
         mapRenderers[newRouteIndex].setMap(map);
-        mySalesInfo.setNewTime(routeDistances[newRouteIndex][2]);//Math.round(result.routes[routeIndex].legs[0].duration.value);
+        mySalesInfo.setNewTime(routeDistances[newRouteIndex][2]);
 	}
 
 	function createControls() {
