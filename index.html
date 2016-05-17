@@ -42,13 +42,13 @@
         </ul>
 
         <!--Use this to trigger map call to get time -->
-        <button name="create_route" disabled class="button expanded create-route-button">Create Route</button>
+        <button name="create_route" class="button expanded create-route-button">Create Route</button> <!-- disabled --> 
 
         <hr>
 
         <div id="mb"></div>
 
-        <div class="select-route-accordion">
+        <div class="select-route-accordion hide">
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Select Alternate Route</a>
@@ -57,12 +57,12 @@
             </ul>
         </div>
 
-        <div id="cal">
-            <div class="block-ui text-center"></div>
+        <div id="cal" class="hide">
+            <!-- <div class="block-ui text-center"></div> -->
             
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Tri-Axle Rates</a>
+                    <a href="#" class="accordion-title triAxleRates">Tri-Axle Rates</a>
                     <div class="accordion-content" data-tab-content>
                         <select id="price_tri">
                             <option value="" disabled>Select a tri-axle rate...</option>
@@ -115,7 +115,7 @@
                     </div>
                 </li>
                 <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Trailer Rates</a>
+                    <a href="#" class="accordion-title trailerRates">Trailer Rates</a>
                     <div class="accordion-content" data-tab-content>
                         <select id="price_tra">
                             <option value="" disabled selected>Select a trailer rate...</option>
