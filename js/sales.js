@@ -206,6 +206,14 @@ var mySalesInfo = (function() {
 
 	$('select').on('change', selectOption);
 
+	$('.accordion-title').on('click', function() {
+        if ($(this).hasClass('triAxleRates')) {
+            truckType = "tri";
+        } else if ($(this).hasClass('trailerRates')) {
+            truckType = "tra";
+        }
+    });
+
 	function setTime(newTime) {
 		calcTimeValues(newTime);
 	}
@@ -213,11 +221,16 @@ var mySalesInfo = (function() {
 	function setWorkingHours(newHours) {
 		workingDay = newHours;
 
-		if (truckType) { buildTime(truckType); }s
+		if (truckType) { buildTime(truckType); }
+	}
+
+	function setTruckType(newType) {
+		truckType = truckType;
 	}
 
 	return {
 		setNewTime : setTime,
-		newWorkingHours : setWorkingHours
+		newWorkingHours : setWorkingHours,
+		setTruckType : setTruckType
 	};
 })();
