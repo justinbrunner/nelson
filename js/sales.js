@@ -4,74 +4,111 @@ var mySalesInfo = (function() {
 	
 	var priceTri = document.querySelector("#price_tri"),
 		priceTra = document.querySelector("#price_tra"),
+		priceSli = document.querySelector("#price_sli"),
+		
 		loadTri = document.querySelector("#load_tri"),
 		dumpTri = document.querySelector("#dump_tri"),
 		loadTra = document.querySelector("#load_tra"),
 		dumpTra = document.querySelector("#dump_tra"),
+		loadSli = document.querySelector("#load_sli"),
+		dumpSli = document.querySelector("#dump_sli"),
+		
 		avgTri = document.querySelector("#avg_tri"),
 		avgTra = document.querySelector("#avg_tra"),
+		avgSli = document.querySelector("#avg_sli"),
+		
 		triTotal = document.querySelector("#triTotal"),
 		traTotal = document.querySelector("#traTotal"),
+		sliTotal = document.querySelector("#sliTotal"),
+		
 		googleTimeTri = document.querySelector("#googleTimeTri"),
 		googleTimeTra = document.querySelector("#googleTimeTra"),
+		googleTimeSli = document.querySelector("#googleTimeSli"),
+		
 		googleTriInc = document.querySelector("#googleTimeTriInc"),
 		googleTraInc = document.querySelector("#googleTimeTraInc"),
+		googleSliInc = document.querySelector("#googleTimeSliInc"),
+		
 		tcTime_tri = document.querySelector("#tcTime_tri"),
 		tcTime_tra = document.querySelector("#tcTime_tra"),
+		tcTime_sli = document.querySelector("#tcTime_sli"),
+		
 		trips_tri_val = document.querySelector("#trips_tri"),
 		tripsRounded_tri_val = document.querySelector("#tripsRounded_tri"),
 		trips_tra_val = document.querySelector("#trips_tra"),
 		tripsRounded_tra_val = document.querySelector("#tripsRounded_tra"),
+		trips_sli_val = document.querySelector("#trips_sli"),
+		tripsRounded_sli_val = document.querySelector("#tripsRounded_sli"),
+		
 		dc_pl_tri = document.querySelector("#dc_pl_tri"),
 		dc_pl_tra = document.querySelector("#dc_pl_tra"),
+		dc_pl_sli = document.querySelector("#dc_pl_sli"),
+		
 		dt_pl_tri = document.querySelector("#dt_pl_tri"),
 		dt_pl_tra = document.querySelector("#dt_pl_tra"),
+		dt_pl_sli = document.querySelector("#dt_pl_sli"),
+		
 		tri_rate_low  = document.querySelector("#tri_rate_low"),
 		tri_rate_high  = document.querySelector("#tri_rate_high"),
 		tra_rate_low  = document.querySelector("#tra_rate_low"),
 		tra_rate_high  = document.querySelector("#tra_rate_high"),
+		sli_rate_low  = document.querySelector("#sli_rate_low"),
+		sli_rate_high  = document.querySelector("#sli_rate_high"),
 		truckType;
 	
 	// Tri-Axle
-	var triAxlePrice = 95; //B3
-	var loadTime_ta = 0; //B4
-	var dumpTime_ta = 0; //B5
+	var triAxlePrice = 100; //B3
+	var loadTime_ta = 10; //B4
+	var dumpTime_ta = 10; //B5
 	var total_tri_load_dump = 0; //B6
-	var avgWeight_tri = 21.5; //B8
+	var avgWeight_tri = 22; //B8
 	
 	// Trailer
-	var trailerPrice = 0; //C3
-	var loadTime_tr = 0; //C4
-	var dumpTime_tr = 0; //C5
+	var trailerPrice = 135; //C3
+	var loadTime_tr = 10; //C4
+	var dumpTime_tr = 10; //C5
 	var total_trailer_load_dump = 0; //C6
-	var avgWeight_tra = 0; //C8
+	var avgWeight_tra = 38; //C8
+	
+	//Slinger
+	var slingerPrice = 130; //C3
+	var loadTime_sli = 10; //C4
+	var dumpTime_sli = 30; //C5
+	var total_slinger_load_dump = 0; //C6
+	var avgWeight_sli = 21.5; //C8
 	
 	var roundTrip_tri; // = travelTime * 2; // B10
 	var roundTrip_tra; // = travelTime * 2; // C10
+	var roundTrip_sli;
 	var perIncrease_tri; // = (roundTrip_tri * 1.10).toFixed(1); // B11
 	var perIncrease_tra; // = (roundTrip_tra * 1.10).toFixed(1); // C11
+	var perIncrease_sli;
 
 	function calcTimeValues(travelTime) {
 		travelTime = Math.ceil(travelTime/60);
 		roundTrip_tri = travelTime * 2; // B10
 		roundTrip_tra = travelTime * 2; // C10
+		roundTrip_sli = travelTime * 2; // C10
 		perIncrease_tri = (roundTrip_tri * 1.10).toFixed(1); // B11
 		perIncrease_tra = (roundTrip_tra * 1.10).toFixed(1); // C11
-
+		perIncrease_sli = (roundTrip_sli * 1.10).toFixed(1); // C11
 		if (truckType) { buildTime(truckType); }
 	}
 	
 	// Total Time
 	var totalCycleTime_tri; //B12
 	var totalCycleTime_tra; //C12
+	var totalCycleTime_sli;
 	
 	//Trips per 10 hour day //B&C 13
-	var workingDay = 600;
+	var workingDay = 660;
 	var trips_tri;
 	var trips_tra;
+	var trips_sli;
 	//Rounded trip values B&C 14
 	var trips_tri_rounded;
 	var trips_tra_rounded;
+	var trips_sli_rounded;
 	
 	//Tri-Axle LOW
 	var rate_tri_low; //B17
@@ -93,6 +130,16 @@ var mySalesInfo = (function() {
 	var ratePerLoad_tra_high;
 	var total_for_day_tra_high;
 	
+	//Slinger Low
+	var rate_sli_low; //C17
+	var ratePerLoad_sli_low; //C15
+	var total_for_day_sli_low; //C16
+	
+	//Slinger High
+	var rate_sli_high; //C18
+	var ratePerLoad_sli_high;
+	var total_for_day_sli_high;
+	
 	//Functions
 	function selectOption(evt) {
 		var target = evt.target.id;
@@ -107,6 +154,10 @@ var mySalesInfo = (function() {
 			case "price_tra":
 				trailerPrice = selectValue;
 				console.log("Trailer: "+trailerPrice);
+				break;
+			case "price_sli":
+				slingerPrice = selectValue;
+				console.log("Slinger: "+slingerPrice);
 				break;
 			case "load_tri":
 				loadTime_ta = selectValue;
@@ -124,6 +175,14 @@ var mySalesInfo = (function() {
 				dumpTime_tr = selectValue;
 				console.log("Dump Trailer: "+dumpTime_tr);
 				break;
+			case "load_sli":
+				loadTime_sli = selectValue;
+				console.log("Load Slinger: "+loadTime_sli);
+				break;
+			case "dump_sli":
+				dumpTime_sli = selectValue;
+				console.log("Dump Slinger: "+dumpTime_sli);
+				break;
 			case "avg_tri":
 				avgWeight_tri = parseInt(selectValue, 10);
 				console.log("Average Tri-axle Weight: "+avgWeight_tri);
@@ -132,12 +191,16 @@ var mySalesInfo = (function() {
 				avgWeight_tra = selectValue;
 				console.log("Average Trailer Weight: "+avgWeight_tra);
 				break;
+			case "avg_sli":
+				avgWeight_sli = selectValue;
+				console.log("Average Slinger Weight: "+avgWeight_sli);
+				break;
 		}
 		
 		//TIME
 		if(loadTime_ta > 0 && dumpTime_ta > 0) { buildTime("tri"); truckType = "tri"; }
 		if(loadTime_tr > 0 && dumpTime_tr > 0) { buildTime("tra"); truckType = "tra"; }
-		
+		if(loadTime_sli > 0 && dumpTime_sli > 0) { buildTime("sli"); truckType = "sli"; }
 	}
 	
 	function buildTime(truckType) {
@@ -160,7 +223,7 @@ var mySalesInfo = (function() {
 
 			if(avgWeight_tri !== 0) {
 				//LOW
-				rate_tri_low = (totalCycleTime_tri * triAxlePrice/60/avgWeight_tri).toFixed(1);
+				rate_tri_low = (triAxlePrice*10/avgWeight_tri/trips_tri_rounded).toFixed(2);
 				ratePerLoad_tri_low = (rate_tri_low * avgWeight_tri).toFixed(2);
 				total_for_day_tri_low = (ratePerLoad_tri_low * trips_tri).toFixed(2);
 				dc_pl_tri.innerHTML = ratePerLoad_tri_low;
@@ -168,12 +231,12 @@ var mySalesInfo = (function() {
 				tri_rate_low.innerHTML = rate_tri_low;
 
 				//HIGH
-				rate_tri_high = (triAxlePrice*10/avgWeight_tri/trips_tri_rounded).toFixed(2); //B18
+				rate_tri_high = (totalCycleTime_tri * triAxlePrice/60/avgWeight_tri).toFixed(2);; //B18
 				ratePerLoad_tri_high = (rate_tri_high * avgWeight_tri).toFixed(2);
 				total_for_day_tri_high = (ratePerLoad_tri_high * trips_tri).toFixed(2);
 				tri_rate_high.innerHTML = rate_tri_high;
 			}
-		}else{
+		}else if(truckType === "tra"){
 			total_trailer_load_dump = parseInt(loadTime_tr, 10)+parseInt(dumpTime_tr, 10);
 			traTotal.innerHTML = "Total Load and Unload Time: "+total_trailer_load_dump;
 			totalCycleTime_tra = parseFloat(total_trailer_load_dump) + parseFloat(perIncrease_tra);
@@ -189,17 +252,45 @@ var mySalesInfo = (function() {
 			googleTraInc.innerHTML = perIncrease_tra;
 			if(avgWeight_tra !== 0) {
 				//LOW
-				rate_tra_low = (totalCycleTime_tra * trailerPrice/60/avgWeight_tra).toFixed(1);
+				rate_tra_low = (trailerPrice*10/avgWeight_tra/trips_tra_rounded).toFixed(2);
 				ratePerLoad_tra_low = (rate_tra_low * avgWeight_tra).toFixed(2);
 				total_for_day_tra_low = (ratePerLoad_tra_low * trips_tra).toFixed(2);
 				dc_pl_tra.innerHTML = ratePerLoad_tra_low;
 				dt_pl_tra.innerHTML = total_for_day_tra_low;
 				tra_rate_low.innerHTML = rate_tra_low;
 				//HIGH
-				rate_tra_high = (trailerPrice*10/avgWeight_tra/trips_tra_rounded).toFixed(2); //C18
+				rate_tra_high = (totalCycleTime_tra * trailerPrice/60/avgWeight_tra).toFixed(2); //C18
 				ratePerLoad_tra_high = (rate_tra_high * avgWeight_tra).toFixed(2);
 				total_for_day_tra_high = (ratePerLoad_tra_high * trips_tra).toFixed(2);
 				tra_rate_high.innerHTML = rate_tra_high;
+			}
+		}else{
+			total_slinger_load_dump = parseInt(loadTime_sli, 10)+parseInt(dumpTime_sli, 10);
+			sliTotal.innerHTML = "Total Load and Unload Time: "+total_slinger_load_dump;
+			totalCycleTime_sli = parseFloat(total_slinger_load_dump) + parseFloat(perIncrease_sli);
+			console.log(totalCycleTime_sli);
+			trips_sli = (workingDay/totalCycleTime_sli).toFixed(2);
+			trips_sli_val.innerHTML = trips_sli;
+			//Rounded trip values B&C 14
+			trips_sli_rounded = Math.floor(workingDay/totalCycleTime_sli).toFixed(1);
+			tripsRounded_sli_val.innerHTML = trips_sli_rounded;
+			//console.log("Load/Dump - Trailer: "+total_trailer_load_dump);
+			tcTime_sli.innerHTML = totalCycleTime_sli;
+			googleTimeSli.innerHTML = roundTrip_sli;
+			googleSliInc.innerHTML = perIncrease_sli;
+			if(avgWeight_sli !== 0) {
+				//LOW
+				rate_sli_low = (slingerPrice*10/avgWeight_sli/trips_sli_rounded).toFixed(2);
+				ratePerLoad_sli_low = (rate_sli_low * avgWeight_sli).toFixed(2);
+				total_for_day_sli_low = (ratePerLoad_sli_low * trips_sli).toFixed(2);
+				dc_pl_sli.innerHTML = ratePerLoad_sli_low;
+				dt_pl_sli.innerHTML = total_for_day_sli_low;
+				sli_rate_low.innerHTML = rate_sli_low;
+				//HIGH
+				rate_sli_high = (totalCycleTime_sli * slingerPrice/60/avgWeight_sli).toFixed(2); //C18
+				ratePerLoad_sli_high = (rate_sli_high * avgWeight_sli).toFixed(2);
+				total_for_day_sli_high = (ratePerLoad_sli_high * trips_sli).toFixed(2);
+				sli_rate_high.innerHTML = rate_sli_high;
 			}
 		}
 	}
@@ -211,7 +302,10 @@ var mySalesInfo = (function() {
             truckType = "tri";
         } else if ($(this).hasClass('trailerRates')) {
             truckType = "tra";
+        } else if ($(this).hasClass('slingerRates')) {
+            truckType = "sli";
         }
+		buildTime(truckType);
     });
 
 	function setTime(newTime) {
@@ -220,7 +314,6 @@ var mySalesInfo = (function() {
 
 	function setWorkingHours(newHours) {
 		workingDay = newHours;
-
 		if (truckType) { buildTime(truckType); }
 	}
 
