@@ -257,3 +257,30 @@ $header-color: #fff;
 .hours-content { padding: 0; }
 
 .hours-badge { margin-left: 8px; font-style: italic; }
+
+.route-info { 
+	width: 200px;  
+	background-color: rgba(255, 255, 255, 0.7);
+	position: absolute;
+	z-index: 20;
+	top: 10px;
+	right: 10px;
+	padding: 10px;
+	border: 2px solid white;
+	border-radius: 4px;
+	opacity: 0;
+	transition: opacity .7s ease;
+
+	ol { margin-bottom: 0; }
+}
+
+.show-route-box { opacity: 1; }
+
+.route-box-route { font-style: italic; color: rgba(150, 150, 150, 0.7); margin-bottom: 0; }
+
+.active-route-indicator { 
+	font-weight: bold;
+	font-style: normal;
+	color: rgb(9,90,230) !important;
+}
+

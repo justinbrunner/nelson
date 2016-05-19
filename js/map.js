@@ -35,7 +35,7 @@
         routeSelect = document.querySelector('.select-route'),
         createRouteButton = document.querySelector('.create-route-button'),
         bounds = new google.maps.LatLngBounds(),
-        controlsBlocker = document.querySelector('.block-ui');
+        routeBox = document.querySelector('.route-info');
 
     // find coordinates, pass them to the map API and set the map's center
     if (navigator.geolocation) {
@@ -131,11 +131,6 @@
                     dropPin(results[0].geometry.location, marker);
                 }
 
-                // if (deliveryAddress && quarryLocation) {
-                //     $('.create-route-button').removeAttr('disabled');
-                //     $('.hide').removeClass('hide');
-                // }
-
             } else {
                 // handle this error somehow => with a Foundation custom element perhaps?
                 console.log("Geocode was not successful for the following reason: " + status);
@@ -204,6 +199,7 @@
                     mySalesInfo.setNewTime(Math.round(result.routes[0].legs[0].duration.value));
                     createControls();
                     $('.hide').removeClass('hide');
+                    routeBox.classList.add('show-route-box');
                 }
             });
         } else {
@@ -213,7 +209,8 @@
     }
 
     function setRoute(e) {
-        var newRouteIndex = e.currentTarget.dataset.newindex;
+        var newRouteIndex = e.currentTarget.dataset.newindex,
+            routeIndicators = document.querySelectorAll('.route-box-route');
 
         $('.route-select').removeClass('active-route');
         e.currentTarget.classList.add('active-route');
@@ -231,6 +228,7 @@
             });
 
             mapRenderers[i].setMap(map);
+            routeIndicators[i].classList.remove('active-route-indicator');
         }
 
         // set the active route color
@@ -246,10 +244,12 @@
 
         mapRenderers[newRouteIndex].setMap(map);
         mySalesInfo.setNewTime(routeDistances[newRouteIndex][2]);
+        routeIndicators[newRouteIndex].classList.add('active-route-indicator');
     }
 
     function createControls() {
-        var controlsContainer = document.querySelector('.alt-routes');
+        var controlsContainer = document.querySelector('.alt-routes'),
+            routeBox = document.querySelector('.route-info ol');
 
         while (controlsContainer.firstChild) {
             controlsContainer.removeChild(controlsContainer.firstChild);
@@ -264,16 +264,19 @@
             routeSelect.addEventListener('click', setRoute, false);
 
             controlsContainer.appendChild(routeSelect);
+
+            var routeListEl = document.createElement('li'),
+                routeListText = document.createElement('p');
+
+            routeListText.classList.add('route-box-route');
+            routeListText.innerHTML = routeDistances[index][0] + " / " + routeDistances[index][1];
+            routeListEl.appendChild(routeListText);
+            routeBox.appendChild(routeListEl);
         });
 
-        //routeSelect.style.visibility = "visible";
         document.querySelectorAll('.route-select')[0].classList.add('active-route');
-        controlsContainer.parentNode.classList.remove('collapse-route-select');
-        //controlsBlocker.classList.add('show-ui');
+        document.querySelectorAll('.route-box-route')[0].classList.add('active-route-indicator');
     }
-
-    //controlsBlocker.addEventListener('transitionend', function() { controlsBlocker.style.display = "none"; }, false);
-
 
     [].forEach.call(addressFields, function(field) {
         field.addEventListener('blur', geoCodeAddress, false);
@@ -286,14 +289,6 @@
     });
 
     createRouteButton.addEventListener('click', createRoute, false);
-
-    // $('.accordion-title').on('click', function() {
-    //     if ($(this).hasClass('triAxleRates')) {
-    //         mySalesInfo.setTruckType("tri");
-    //     } else if ($(this).hasClass('trailerRates')) {
-    //         mySalesInfo.setTruckType("tra");
-    //     }
-    // });
 
     $('.hours-options li').on('click', function() {
         var thisTitle = $(this).parents('.accordion-item').find('.accordion-title');
