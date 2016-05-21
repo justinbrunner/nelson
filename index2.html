@@ -1,0 +1,248 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>    
+    <title>Welcome to the Nelson Trucking Rates</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+<body>
+<section class="truckingCal">
+    <div class="large-3 columns shadow">
+    	<div class="large-6 large-centered columns title2">
+        	<img src="images/Nelson_Aggregate_logo.png" alt="Nelson Aggregate Logo">
+        </div>
+        <hr>
+        <h2>DELIVERY INFORMATION</h2>
+        <input class="address-control" name="quarry_address" placeholder="Enter a quarry address">
+        <input class="address-control" name="delivery_address" placeholder="Enter a delivery address">
+        
+        <ul class="accordion" data-accordion data-allow-all-closed="true">
+            <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Select Working Hours<span class="hours-badge">( 11 hrs )</span></a>
+                <div class="accordion-content hours-content" data-tab-content>
+                    <ul class="no-bullet hours-options">
+                        <li data-hours="480">8 Hours</li>
+                        <li data-hours="540">9 Hours</li>
+                        <li data-hours="600">10 Hours</li>
+                        <li data-hours="660">11 Hours</li>
+                        <li data-hours="720">12 Hours</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <!--Use this to trigger map call to get time -->
+        <button name="create_route" class="button expanded create-route-button">Create Route</button> <!-- disabled --> 
+
+        <hr>
+		<div id="dt">
+            <div class="flex-video">
+                <div id="map_canvas"></div>
+            </div>
+        </div>
+        <!--<div class="reveal" id="map_lg" data-reveal>
+ 		  <div id="dt">
+          	<div class="route-info">
+                    <h6>ROUTE INFO</h6>
+                    <ol></ol>
+                </div>
+            <div class="flex-video">
+                <div id="map_canvas"></div>
+            </div>
+        </div>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <a data-open="map_lg">Open Large Map</a>-->
+        
+        <div id="mb"></div>
+
+        <div class="select-route-accordion hide">
+            <ul class="accordion" data-accordion data-allow-all-closed="true">
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Select Alternate Route</a>
+                    <div class="accordion-content alt-routes" data-tab-content></div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="large-9 columns cal2">
+      <div id="cal" class="">
+      	<div class="large-4 columns">
+        	<div class="panel">
+                    <h2>Tri-Axle Rates</h2>
+                        <select id="price_tri">
+                            <option value="" disabled>Select a tri-axle rate...</option>
+                            <option value="95">$95.00</option>
+                            <option value="100" selected>$100.00</option>
+                            <option value="105">$105.00</option>
+                            <option value="110">$110.00</option>
+                            <option value="115">$115.00</option>
+                        </select>
+                        <select id="load_tri">
+                            <option value="" disabled>Select a load time...</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                        <select id="dump_tri">
+                            <option value="" disabled selected>Select a Dump time...</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                        <p id="triTotal"></p>
+                        <select id="avg_tri">
+                            <option value="" disabled>Select a tri-axle average weight...</option>
+                            <option value="21.5">21.5</option>
+                            <option value="22" selected>22</option>
+                            <option value="22.5">22.5</option>
+                            <option value="23">23</option>
+                        </select>
+                        <h3>Delivery Time</h3>
+                        <p>Trips per day: <span id="trips_tri"></span> / <span id="tripsRounded_tri"></span> (Rounded)</p>
+                        <p>Delivery Time: <span id="googleTimeTri"></span> (RT) / <span id="googleTimeTriInc"></span> (10%)</p>
+                        <p>Total Time: <span id="tcTime_tri"></span></p>
+                        <h3>Delivery Charge</h3>
+                        <p>Delivery Charge - <span id="dc_pl_tri">$0</span> per load</p>
+                        <p>Delivery total - <span id="dt_pl_tri">$0</span> per day</p>
+                        <p>Rate(low): <span id="tri_rate_low">$0</span> / Rate(high): <span id="tri_rate_high">$0</span></p>
+                	</div>
+                </div>
+                <div class="large-4 columns">
+                	<div class="panel">
+                    <h2>Trailer Rates</h2>
+                        <select id="price_tra">
+                            <option value="" disabled>Select a trailer rate...</option>
+                            <option value="125">$125.00</option>
+                            <option value="130">$130.00</option>
+                            <option value="135" selected>$135.00</option>
+                            <option value="140">$140.00</option>
+                            <option value="145">$145.00</option>
+                            <option value="150">$150.00</option>
+                        </select>
+                        <select id="load_tra">
+                            <option value="" disabled>Select a load time...</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                        <select id="dump_tra">
+                            <option value="" disabled>Select a dump time...</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                        <p id="traTotal"></p>
+                        <select id="avg_tra">
+                            <option value="" disabled>Select a trailer average weight...</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">20</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38" selected>38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                        </select>
+                        <h3>Delivery Time</h3>
+                        <p>Trips per day: <span id="trips_tra"></span> / <span id="tripsRounded_tra"></span> (Rounded)</p>
+                        <p>Delivery Time: <span id="googleTimeTra"></span> (RT) / <span id="googleTimeTraInc"></span> (10%)</p>
+                        <p>Total Time: <span id="tcTime_tra"></span></p>
+                        <h3>Delivery Charge</h3>
+                        <p>Delivery Charge - <span id="dc_pl_tra">$0</span> per load</p>
+                        <p>Delivery total - <span id="dt_pl_tra">$0</span> per day</p>
+                        <p>Rate(low): <span id="tra_rate_low">$0</span> / Rate(high): <span id="tra_rate_high">$0</span></p>
+                      </div>
+                      </div>
+                      <div class="large-4 columns">
+                      	<div class="panel">
+                      <h2>Slinger Rates</h2>
+                        <select id="price_sli">
+                            <option value="" disabled>Select a slinger rate...</option>
+                            <option value="125">$125.00</option>
+                            <option value="130" selected>$130.00</option>
+                            <option value="135">$135.00</option>
+                            <option value="140">$140.00</option>
+                            <option value="145">$145.00</option>
+                        </select>
+                        <select id="load_sli">
+                            <option value="" disabled>Select a load time...</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                        </select>
+                        <select id="dump_sli">
+                            <option value="" disabled>Select a dump time...</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30" selected>30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                        <p id="sliTotal"></p>
+                        <select id="avg_sli">
+                            <option value="" disabled selected>Select a slinger average weight...</option>
+                            <option value="21">21</option>
+                            <option value="21.5" selected>21.5</option>
+                            <option value="22">22</option>
+                            <option value="22.5">22.5</option>
+                        </select>
+                        <h3>Delivery Time</h3>
+                        <p>Trips per day: <span id="trips_sli"></span> / <span id="tripsRounded_sli"></span> (Rounded)</p>
+                        <p>Delivery Time: <span id="googleTimeSli"></span> (RT) / <span id="googleTimeSliInc"></span> (10%)</p>
+                        <p>Total Time: <span id="tcTime_sli"></span></p>
+                        <h3>Delivery Charge</h3>
+                        <p>Delivery Charge - <span id="dc_pl_sli">$0</span> per load</p>
+                        <p>Delivery total - <span id="dt_pl_sli">$0</span> per day</p>
+                        <p>Rate(low): <span id="sli_rate_low">$0</span> / Rate(high): <span id="sli_rate_high">$0</span></p>
+                        </div>
+                        </div>
+  		</div>  
+    </div>
+</section>
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+        $(document).foundation();
+    });
+</script>
+<script src="js/sales2.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
