@@ -23,8 +23,11 @@
         marker,
         markers = [],
         routeDistances = [],
-        lineWeight = 5,
+        lineWeight = 3,
         addressFields = document.querySelectorAll('.address-control'),
+        //quarryInput = document.querySelector('.quarry-input'),
+        autoCompleteOptions = { componentRestrictions : { country: 'ca' } },
+        quarryAutoComplete = new google.maps.places.Autocomplete(document.querySelector('.delivery-input'), autoCompleteOptions),
         quarrySelected = false,
         deliveryAddress = false,
         quarryLocation,
@@ -265,17 +268,17 @@
 
             controlsContainer.appendChild(routeSelect);
 
-            var routeListEl = document.createElement('li'),
-                routeListText = document.createElement('p');
+            // var routeListEl = document.createElement('li'),
+            //     routeListText = document.createElement('p');
 
-            routeListText.classList.add('route-box-route');
-            routeListText.innerHTML = routeDistances[index][0] + " / " + routeDistances[index][1];
-            routeListEl.appendChild(routeListText);
-            routeBox.appendChild(routeListEl);
+            // routeListText.classList.add('route-box-route');
+            // routeListText.innerHTML = routeDistances[index][0] + " / " + routeDistances[index][1];
+            // routeListEl.appendChild(routeListText);
+            // routeBox.appendChild(routeListEl);
         });
 
         document.querySelectorAll('.route-select')[0].classList.add('active-route');
-        document.querySelectorAll('.route-box-route')[0].classList.add('active-route-indicator');
+        //document.querySelectorAll('.route-box-route')[0].classList.add('active-route-indicator');
     }
 
     [].forEach.call(addressFields, function(field) {

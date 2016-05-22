@@ -1,4 +1,13 @@
 /* Scss Document */
+@media screen and (min-width: 50em) {
+  body {
+    font-size: 14px; }
+
+  .title p {
+    padding-bottom: 15px; }
+
+  .shift {
+    padding-top: 36px; } }
 body {
   padding: 0;
   margin: 0;
@@ -27,7 +36,7 @@ select {
   padding: 0.35rem;
   font-size: .85rem; }
 
-.title h2, .title2 h2 {
+.title h2 {
   font-size: 27px;
   font-weight: 300;
   color: #fff;
@@ -47,8 +56,7 @@ h3 {
 
 hr {
   border-top: 1px solid #2d96d3;
-  border-bottom: none;
-  margin: .85rem auto; }
+  border-bottom: none; }
 
 #cal {
   position: relative; }
@@ -77,12 +85,7 @@ hr {
   padding-top: 18px;
   text-align: center; }
 
-.title2 {
-  color: #fff;
-  padding-top: 8px;
-  text-align: center; }
-
-.title p, .title2 p {
+.title p {
   border-top: dotted 1px #565656;
   color: #565656;
   padding-bottom: 0px; }
@@ -103,12 +106,12 @@ header {
   background-color: #333; }
 
 .shadow {
-  -webkit-box-shadow: inset 0px 0px 0px 0px #000000;
-  -moz-box-shadow: inset 0px 0px 0px 0px #000000;
-  -o-box-shadow: inset 0px 0px 0px 0px #000000;
-  box-shadow: inset 0px 0px 0px 0px #000000;
+  -webkit-box-shadow: inset -10px 1px 11px -4px #000000;
+  -moz-box-shadow: inset -10px 1px 11px -4px #000000;
+  -o-box-shadow: inset -10px 1px 11px -4px #000000;
+  box-shadow: inset -10px 1px 11px -4px #000000;
   height: 100vh;
-  overflow: none;
+  overflow: auto;
   overflow-x: hidden; }
 
 p {
@@ -224,9 +227,8 @@ a {
   border-radius: 4px;
   opacity: 0;
   transition: opacity .7s ease; }
-
-.route-info ol {
-  margin-bottom: 0; }
+  .route-info ol {
+    margin-bottom: 0; }
 
 .show-route-box {
   opacity: 1; }
@@ -241,53 +243,7 @@ a {
   font-style: normal;
   color: #095ae6 !important; }
 
-.cal2 h2 {
-  padding-top: 10px;
-  color: #E7E7E7;
-  font-weight: 400; }
-
-.cal2 h3 {
-  color: #E7E7E7; }
-
-.cal2 p {
-  color: #878787; }
-
-.panel {
-  background: #3B3B3B;
-  padding: 10px 15px 10px 15px;
-  border: 1px solid #8B8B8B;
-  margin-top: 30px; }
-
-.panel:last-child {
-  margin-bottom: 30px; }
-
-span {
-  font-weight: 500;
-  color: #E7E7E7; }
-
-@media screen and (min-width: 50em) {
-  body {
-    font-size: 14px; }
-
-  .title p {
-    padding-bottom: 15px; }
-
-  .shift {
-    padding-top: 36px; }
-
-  .panel {
-    margin-top: 80px; }
-
-  .shadow {
-    -webkit-box-shadow: inset -10px 1px 11px -4px #000000;
-    -moz-box-shadow: inset -10px 1px 11px -4px #000000;
-    -o-box-shadow: inset -10px 1px 11px -4px #000000;
-    box-shadow: inset -10px 1px 11px -4px #000000;
-    height: 100vh;
-    overflow: auto;
-    overflow-x: hidden; }
-
-  .panel:last-child {
-    margin-bottom: 0px; } }
+.pac-item {
+  color: #333; }
 
 /*# sourceMappingURL=main.css.map */
