@@ -17,8 +17,8 @@
         </div>
         <hr>
         <h2>DELIVERY INFORMATION</h2>
-        <input class="address-control" name="quarry_address" placeholder="Enter a quarry address">
-        <input class="address-control" name="delivery_address" placeholder="Enter a delivery address">
+        <input class="address-control quarry-input" name="quarry_address" placeholder="Enter a quarry address" type="text">
+        <input class="address-control delivery-input" name="delivery_address" placeholder="Enter a delivery address" type="text">
         
         <ul class="accordion" data-accordion data-allow-all-closed="true">
             <li class="accordion-item" data-accordion-item>
@@ -36,7 +36,7 @@
         </ul>
 
         <!--Use this to trigger map call to get time -->
-        <button name="create_route" class="button expanded create-route-button">Create Route</button> <!-- disabled --> 
+        <!--<button name="create_route" class="button expanded create-route-button">Create Route</button> --> 
 
         <hr>
 		<div id="dt">
@@ -242,7 +242,7 @@
     });
 </script>
 <script src="js/sales2.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDa1U2kHPZ_yBMDdXfk_2Nb_h2ragmd_w&libraries=places"></script>
 <script src="js/map.js"></script>
 </body>
 </html>

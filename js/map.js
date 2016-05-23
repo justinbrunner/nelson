@@ -19,12 +19,13 @@
     moveMap(mq);
 
     var directionsService = new google.maps.DirectionsService(),
-        geocoder = new google.maps.Geocoder(),
         marker,
-        markers = [],
+        markers = ['foo', 'bar'],
         routeDistances = [],
-        lineWeight = 5,
-        addressFields = document.querySelectorAll('.address-control'),
+        lineWeight = 3,
+        autoCompleteOptions = { componentRestrictions : { country: 'ca' } },
+        deliveryAutoComplete = new google.maps.places.Autocomplete(document.querySelector('.delivery-input'), autoCompleteOptions),
+        quarryAutoComplete = new google.maps.places.Autocomplete(document.querySelector('.quarry-input'), autoCompleteOptions),
         quarrySelected = false,
         deliveryAddress = false,
         quarryLocation,
@@ -33,31 +34,88 @@
         cusIconEnd = "images/unload.png",
         mapRenderers = [],
         routeSelect = document.querySelector('.select-route'),
-        createRouteButton = document.querySelector('.create-route-button'),
-        bounds = new google.maps.LatLngBounds(),
-        routeBox = document.querySelector('.route-info');
+        bounds = new google.maps.LatLngBounds();
 
     // find coordinates, pass them to the map API and set the map's center
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(setMapLocation, logFailed);
     }
 
+    quarryAutoComplete.addListener('place_changed', function() {
+        var place = quarryAutoComplete.getPlace();
+
+        if (!place.geometry) {
+            console.log('this ain\'t no place!');
+        } else {
+            quarrySelected = true;
+            quarryLocation = place.geometry.location;
+
+            var loc1 = new google.maps.LatLng(quarryLocation.lat(), quarryLocation.lng());
+
+            bounds.extend(loc1);
+
+            marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: "Quarry Location",
+                icon: cusIconStart
+            });
+
+            markers[0] = marker;
+            clearMarkers(null);
+            dropPin(null, marker);
+        }
+        if (quarrySelected && deliveryAddress) {
+            createRoute();
+        }
+    });
+
+    deliveryAutoComplete.addListener('place_changed', function() {
+        var place = deliveryAutoComplete.getPlace();
+
+        if (!place.geometry) {
+            console.log('this ain\'t no place!');
+        } else {
+            deliveryAddress = true;
+            deliveryLocation = place.geometry.location;
+
+            var loc2 = new google.maps.LatLng(deliveryLocation.lat(), deliveryLocation.lng());
+
+            bounds.extend(loc2);
+
+            marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: "Delivery Location",
+                icon: cusIconEnd
+            });
+
+            markers[1] = marker;
+            clearMarkers(null);
+            dropPin(null, marker);
+        }
+        if (quarrySelected && deliveryAddress) {
+            createRoute();
+        }
+    });
+
     function logFailed(error) {
         console.log('geoloation not available: ' + error.message);
     }
 
-    // delete markers from map
+    // delete and replace markers from map
     function clearMarkers(map) {
         for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(map);
+            try {
+                markers[i].setMap(map);
+            } catch(e) {
+                console.log(e.message);
+            }
         }
     }
 
-    // drop a new pin
     function dropPin(loc, marker) {
-        // put all the markers back on the map
         clearMarkers(map);
-
         map.setCenter(marker.position);
     }
 
@@ -69,148 +127,76 @@
 
         map.setCenter(newLatLng);
         map.setZoom(12);
-
-        marker = new google.maps.Marker({
-            position: newLatLng,
-            map: map,
-            title: "howdy do!"
-                //icon: cusIconStart
-        });
-
-        markers.push(marker);
-
-    }
-
-    function geoCodeAddress(e) {
-        clearMarkers(null);
-
-        var address = e.currentTarget.value,
-            entryPoint, marker;
-
-        if (address === "" || address === undefined) {
-            // handle this error somehow => with a Foundation custom element perhaps?
-            console.log('somehow an empty field made it through - handle this error');
-        } else {
-            entryPoint = e.currentTarget.name;
-        }
-
-        geocoder.geocode({ 'address': address }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                // if the quarry or delivery address aren't selected, drop a pin. else do the directions service, because one or the other is selected		 
-
-                if (entryPoint == "quarry_address") {
-                    quarrySelected = true;
-                    quarryLocation = results[0].geometry.location;
-                    marker = new google.maps.Marker({
-                        position: results[0].geometry.location,
-                        map: map,
-                        title: "howdy do!",
-                        icon: cusIconStart
-                    });
-
-                    markers[0] = marker;
-
-                    dropPin(results[0].geometry.location, marker);
-                } else {
-                    deliveryAddress = true;
-                    deliveryLocation = results[0].geometry.location;
-
-                    marker = new google.maps.Marker({
-                        position: results[0].geometry.location,
-                        map: map,
-                        title: "howdy do!",
-                        icon: cusIconEnd
-                    });
-
-                    if (!markers[1]) {
-                        markers.push(marker);
-                    } else {
-                        markers[1] = marker;
-                    }
-
-                    dropPin(results[0].geometry.location, marker);
-                }
-
-            } else {
-                // handle this error somehow => with a Foundation custom element perhaps?
-                console.log("Geocode was not successful for the following reason: " + status);
-            }
-        });
     }
 
     function createRoute() {
-        if (quarrySelected && deliveryAddress) {
+        var start = quarryLocation,
+            end = deliveryLocation;
 
-            var start = quarryLocation,
-                end = deliveryLocation;
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING,
+            provideRouteAlternatives: true,
+            avoidTolls: true
+        };
 
-            var request = {
-                origin: start,
-                destination: end,
-                travelMode: google.maps.TravelMode.DRIVING,
-                provideRouteAlternatives: true,
-                avoidTolls: true
-            };
+        [].forEach.call(mapRenderers, function(renderer) {
+            renderer.setMap(null);
+        });
 
-            [].forEach.call(mapRenderers, function(renderer) {
-                renderer.setMap(null);
-            });
+        mapRenderers = [];
+        routeDistances = [];
 
-            mapRenderers = [];
-            routeDistances = [];
+        directionsService.route(request, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
 
-            directionsService.route(request, function(result, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
+                console.log(result);
 
-                    console.log(result);
+                for (var i = 0, len = result.routes.length; i < len; i++) {
 
-                    for (var i = 0, len = result.routes.length; i < len; i++) {
-
-                        var renderer = new google.maps.DirectionsRenderer({
-                            map: map,
-                            directions: result,
-                            routeIndex: i,
-                            suppressMarkers: true,
-                            polylineOptions: {
-                                strokeColor: "rgba(150,150,150,0.75)",
-                                strokeWeight: lineWeight
-                            }
-                        });
-
-                        mapRenderers.push(renderer);
-                    }
-
-                    mapRenderers[0].setMap(null);
-
-                    mapRenderers[0].setOptions({
+                    var renderer = new google.maps.DirectionsRenderer({
+                        map: map,
+                        directions: result,
+                        routeIndex: i,
+                        suppressMarkers: true,
                         polylineOptions: {
-                            strokeColor: "rgba(9,90,230,1)",
-                            zIndex: 1,
+                            strokeColor: "rgba(150,150,150,0.75)",
                             strokeWeight: lineWeight
                         }
                     });
 
-                    mapRenderers[0].setMap(map);
-
-                    for (var r = 0, rLength = result.routes.length; r < rLength; r++) {
-                        routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text, result.routes[r].legs[0].duration.value]);
-                    }
-
-                    mySalesInfo.setNewTime(Math.round(result.routes[0].legs[0].duration.value));
-                    createControls();
-                    $('.hide').removeClass('hide');
-                    routeBox.classList.add('show-route-box');
+                    mapRenderers.push(renderer);
                 }
-            });
-        } else {
-            console.log('somethin ain\'t right, yo!');
-        }
 
+                mapRenderers[0].setMap(null);
+
+                mapRenderers[0].setOptions({
+                    polylineOptions: {
+                        strokeColor: "rgba(9,90,230,1)",
+                        zIndex: 1,
+                        strokeWeight: lineWeight
+                    }
+                });
+
+                mapRenderers[0].setMap(map);
+                map.fitBounds(bounds);
+
+                for (var r = 0, rLength = result.routes.length; r < rLength; r++) {
+                    routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text, result.routes[r].legs[0].duration.value]);
+                }
+
+                mySalesInfo.setNewTime(Math.round(result.routes[0].legs[0].duration.value));
+                createControls();
+                $('.hide').removeClass('hide');
+            } else {
+                console.log('directions service failed');
+            }
+        });
     }
 
     function setRoute(e) {
-        var newRouteIndex = e.currentTarget.dataset.newindex,
-            routeIndicators = document.querySelectorAll('.route-box-route');
+        var newRouteIndex = e.currentTarget.dataset.newindex;
 
         $('.route-select').removeClass('active-route');
         e.currentTarget.classList.add('active-route');
@@ -228,7 +214,6 @@
             });
 
             mapRenderers[i].setMap(map);
-            routeIndicators[i].classList.remove('active-route-indicator');
         }
 
         // set the active route color
@@ -244,12 +229,10 @@
 
         mapRenderers[newRouteIndex].setMap(map);
         mySalesInfo.setNewTime(routeDistances[newRouteIndex][2]);
-        routeIndicators[newRouteIndex].classList.add('active-route-indicator');
     }
 
     function createControls() {
-        var controlsContainer = document.querySelector('.alt-routes'),
-            routeBox = document.querySelector('.route-info ol');
+        var controlsContainer = document.querySelector('.alt-routes');
 
         while (controlsContainer.firstChild) {
             controlsContainer.removeChild(controlsContainer.firstChild);
@@ -264,31 +247,17 @@
             routeSelect.addEventListener('click', setRoute, false);
 
             controlsContainer.appendChild(routeSelect);
-
-            var routeListEl = document.createElement('li'),
-                routeListText = document.createElement('p');
-
-            routeListText.classList.add('route-box-route');
-            routeListText.innerHTML = routeDistances[index][0] + " / " + routeDistances[index][1];
-            routeListEl.appendChild(routeListText);
-            routeBox.appendChild(routeListEl);
         });
 
         document.querySelectorAll('.route-select')[0].classList.add('active-route');
-        document.querySelectorAll('.route-box-route')[0].classList.add('active-route-indicator');
+        //$('.select-route-accordion').find('.accordion-title').trigger('click');
     }
-
-    [].forEach.call(addressFields, function(field) {
-        field.addEventListener('blur', geoCodeAddress, false);
-    });
 
     google.maps.event.addDomListener(window, "resize", function() {
         var center = map.getCenter();
         google.maps.event.trigger(map, "resize");
         map.setCenter(center);
     });
-
-    createRouteButton.addEventListener('click', createRoute, false);
 
     $('.hours-options li').on('click', function() {
         var thisTitle = $(this).parents('.accordion-item').find('.accordion-title');

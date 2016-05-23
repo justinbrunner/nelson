@@ -11,6 +11,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px; }
 
+.pac-item {
+  color: #333 !important; }
+
+.address-control {
+  font-size: 14px; }
+  .address-control .pac-item {
+    color: #333 !important; }
+
 header h1 {
   margin-top: 43px;
   font-size: 27px;
@@ -53,24 +61,8 @@ hr {
 #cal {
   position: relative; }
 
-.block-ui {
-  background-color: rgba(255, 255, 255, 0.85);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 40;
-  transition: opacity .7s ease;
-  background: repeating-linear-gradient(-55deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35) 10px, rgba(255, 255, 255, 0.45) 10px, rgba(255, 255, 255, 0.45) 20px); }
-  .block-ui i {
-    font-size: 8em;
-    color: white;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    text-shadow: 0 0 4px #ccc; }
-
-.show-ui {
-  opacity: 0; }
+#dt {
+  width: 100%; }
 
 .title {
   color: #fff;
@@ -103,12 +95,12 @@ header {
   background-color: #333; }
 
 .shadow {
-  -webkit-box-shadow: inset 0px 0px 0px 0px #000000;
-  -moz-box-shadow: inset 0px 0px 0px 0px #000000;
-  -o-box-shadow: inset 0px 0px 0px 0px #000000;
-  box-shadow: inset 0px 0px 0px 0px #000000;
+  -webkit-box-shadow: inset -10px 1px 11px -4px #000000;
+  -moz-box-shadow: inset -10px 1px 11px -4px #000000;
+  -o-box-shadow: inset -10px 1px 11px -4px #000000;
+  box-shadow: inset -10px 1px 11px -4px #000000;
   height: 100vh;
-  overflow: none;
+  overflow: auto;
   overflow-x: hidden; }
 
 p {
@@ -212,35 +204,6 @@ a {
   margin-left: 8px;
   font-style: italic; }
 
-.route-info {
-  width: 200px;
-  background-color: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  z-index: 20;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  border: 2px solid white;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity .7s ease; }
-
-.route-info ol {
-  margin-bottom: 0; }
-
-.show-route-box {
-  opacity: 1; }
-
-.route-box-route {
-  font-style: italic;
-  color: rgba(150, 150, 150, 0.7);
-  margin-bottom: 0; }
-
-.active-route-indicator {
-  font-weight: bold;
-  font-style: normal;
-  color: #095ae6 !important; }
-
 .cal2 h2 {
   padding-top: 10px;
   color: #E7E7E7;
@@ -261,9 +224,14 @@ a {
 .panel:last-child {
   margin-bottom: 30px; }
 
-span {
+span:not(.pac-item span) {
   font-weight: 500;
   color: #E7E7E7; }
+  
+  .panel span {
+	font-weight: 500;
+	color: #E7E7E7;		
+}
 
 @media screen and (min-width: 50em) {
   body {
@@ -288,6 +256,9 @@ span {
     overflow-x: hidden; }
 
   .panel:last-child {
-    margin-bottom: 0px; } }
+    margin-bottom: 0px; }
+
+  .pac-item {
+    color: #333 !important; } }
 
 /*# sourceMappingURL=main.css.map */
