@@ -238,6 +238,7 @@ $header-color: #fff;
 
 .hours-badge { margin-left: 8px; font-style: italic; }
 
+
 .cal2 h2 {
 	padding-top: 10px;
 	color: #E7E7E7;
@@ -267,7 +268,6 @@ span:not(.pac-item span) {
 	font-weight: 500;
 	color: #E7E7E7;	
 }
-
 
 @media screen and (min-width: 50em) {
 	
@@ -300,8 +300,5 @@ span:not(.pac-item span) {
 	.panel:last-child {
 		margin-bottom: 0px;
 	}
-
-	.pac-item { color: #333 !important; }
 	
 }
-
