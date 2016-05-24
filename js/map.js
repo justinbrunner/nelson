@@ -20,7 +20,7 @@
 
     var directionsService = new google.maps.DirectionsService(),
         marker,
-        markers = ['foo', 'bar'],
+        markers = [],
         routeDistances = [],
         lineWeight = 3,
         autoCompleteOptions = { componentRestrictions : { country: 'ca' } },
@@ -50,20 +50,18 @@
             quarrySelected = true;
             quarryLocation = place.geometry.location;
 
-            var loc1 = new google.maps.LatLng(quarryLocation.lat(), quarryLocation.lng());
-
-            bounds.extend(loc1);
-
             marker = new google.maps.Marker({
                 position: place.geometry.location,
-                map: map,
                 title: "Quarry Location",
                 icon: cusIconStart
             });
 
+            if (markers[0] && markers[0].setMap) {
+                markers[0].setMap(null);
+            }
+
             markers[0] = marker;
-            clearMarkers(null);
-            dropPin(null, marker);
+            dropPin(marker);
         }
         if (quarrySelected && deliveryAddress) {
             createRoute();
@@ -79,21 +77,20 @@
             deliveryAddress = true;
             deliveryLocation = place.geometry.location;
 
-            var loc2 = new google.maps.LatLng(deliveryLocation.lat(), deliveryLocation.lng());
-
-            bounds.extend(loc2);
-
             marker = new google.maps.Marker({
                 position: place.geometry.location,
-                map: map,
                 title: "Delivery Location",
                 icon: cusIconEnd
             });
 
+            if (markers[1] && markers[1].setMap) {
+                markers[1].setMap(null);
+            }
+
             markers[1] = marker;
-            clearMarkers(null);
-            dropPin(null, marker);
+            dropPin(marker);
         }
+
         if (quarrySelected && deliveryAddress) {
             createRoute();
         }
@@ -103,19 +100,8 @@
         console.log('geoloation not available: ' + error.message);
     }
 
-    // delete and replace markers from map
-    function clearMarkers(map) {
-        for (var i = 0; i < markers.length; i++) {
-            try {
-                markers[i].setMap(map);
-            } catch(e) {
-                console.log(e.message);
-            }
-        }
-    }
-
-    function dropPin(loc, marker) {
-        clearMarkers(map);
+    function dropPin(marker) {
+        marker.setMap(map);
         map.setCenter(marker.position);
     }
 
@@ -180,6 +166,7 @@
                 });
 
                 mapRenderers[0].setMap(map);
+                bounds = result.routes[0].bounds;
                 map.fitBounds(bounds);
 
                 for (var r = 0, rLength = result.routes.length; r < rLength; r++) {
@@ -250,13 +237,13 @@
         });
 
         document.querySelectorAll('.route-select')[0].classList.add('active-route');
-        //$('.select-route-accordion').find('.accordion-title').trigger('click');
     }
 
     google.maps.event.addDomListener(window, "resize", function() {
         var center = map.getCenter();
         google.maps.event.trigger(map, "resize");
         map.setCenter(center);
+        map.fitBounds(bounds);
     });
 
     $('.hours-options li').on('click', function() {
