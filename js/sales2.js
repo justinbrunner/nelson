@@ -106,7 +106,7 @@ var mySalesInfo = (function() {
 	
 	//Trips per 10 hour day //B&C 13
 	var workingDay = 660;
-	var workingHours = 11;
+	var workingHours;
 	var trips_tri;
 	var trips_tra;
 	var trips_sli;
@@ -209,7 +209,8 @@ var mySalesInfo = (function() {
 	}
 	
 	function buildTime(truckType) {
-		
+		workingHours = workingDay/60;
+		console.log(workingHours);
 		if(truckType === "tri") {
 			total_tri_load_dump = parseInt(loadTime_ta)+parseInt(dumpTime_ta);
 			triTotal.innerHTML = "Total Load/Unload Time: "+total_tri_load_dump;
