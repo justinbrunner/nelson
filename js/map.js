@@ -107,12 +107,16 @@
 
     function setMapLocation(geoObject) {
         var newLatLng = {
-            lat: geoObject.coords.latitude,
-            lng: geoObject.coords.longitude
+            //lat: geoObject.coords.latitude,
+            //lng: geoObject.coords.longitude
+            
+            // set new defaults b/c geolocation may not work on all devices (SW ON)
+            lat: 43.459548,
+            lng: -80.738432
         };
 
         map.setCenter(newLatLng);
-        map.setZoom(12);
+        map.setZoom(6);
     }
 
     function createRoute() {
@@ -168,6 +172,7 @@
                 mapRenderers[0].setMap(map);
                 bounds = result.routes[0].bounds;
                 map.fitBounds(bounds);
+                //map.setZoom(15);
 
                 for (var r = 0, rLength = result.routes.length; r < rLength; r++) {
                     routeDistances.push([result.routes[r].legs[0].distance.text, result.routes[r].legs[0].duration.text, result.routes[r].legs[0].duration.value]);
