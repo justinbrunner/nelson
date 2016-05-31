@@ -37,9 +37,9 @@
         bounds = new google.maps.LatLngBounds();
 
     // find coordinates, pass them to the map API and set the map's center
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setMapLocation, logFailed);
-    }
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(setMapLocation, logFailed);
+    // }
 
     quarryAutoComplete.addListener('place_changed', function() {
         var place = quarryAutoComplete.getPlace();
@@ -262,4 +262,6 @@
 
         mySalesInfo.newWorkingHours($(this).data('hours'));
     });
+
+    setMapLocation();
 })();
