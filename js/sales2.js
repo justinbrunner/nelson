@@ -320,7 +320,9 @@ var mySalesInfo = (function() {
 
 	function setWorkingHours(newHours) {
 		workingDay = newHours;
-		if (truckType) { buildTime(truckType); }
+		buildTime("tri");
+		buildTime("tra");
+		buildTime("sli");
 	}
 
 	function setTruckType(newType) {
