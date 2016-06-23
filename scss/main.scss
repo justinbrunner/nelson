@@ -276,11 +276,21 @@ span:not(.pac-item span) {
 
 #lrgMap {
 	position: absolute;
-	margin: 0px auto;
-	width: 90%;
-	height: 75%;
+	top: 5%;
+	left: 10%;
+	width: 80%;
+	height: 65%;
 	display: none;
 	z-index: 99;
+  }
+  
+  #closeMap {
+	  position: absolute;
+	  right: 0px;
+	  background: #fff;
+	  padding: 10px;
+	  z-index: 9999;
+	  cursor: pointer; 
   }
 
 @media screen and (min-width: 50em) {
