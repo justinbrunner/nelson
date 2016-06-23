@@ -7,15 +7,26 @@
         mb = document.querySelector("#mb"),
         dt = document.querySelector("#dt"),
 		lrgMp = document.querySelector("#lrg_map"),
+		close_map = document.querySelector("#closeMap"),
 		mapLg = document.querySelector("#lrgMap");
 
 	function largeMap() {
 		mapLg.style.display = "block";
 		mapLg.appendChild(mapParent);
 		createRoute();
+		google.maps.event.trigger(map, 'resize');
+	}
+	
+	function removeLrg() {
+		//mapLg.removeChild(mapParent);
+		mapLg.style.display = "none";
+		moveMap(mq)
+		createRoute();
+		google.maps.event.trigger(map, 'resize');
 	}
 	
 	lrgMp.addEventListener("click", largeMap, false);
+	close_map.addEventListener("click", removeLrg, false);
 
     function moveMap(mq) {
         if (mq.matches) {
