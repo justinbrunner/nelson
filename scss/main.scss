@@ -274,6 +274,15 @@ span:not(.pac-item span) {
 	color: #E7E7E7;		
 }
 
+#lrgMap {
+	position: absolute;
+	margin: 0px auto;
+	width: 90%;
+	height: 75%;
+	display: none;
+	z-index: 99;
+  }
+
 @media screen and (min-width: 50em) {
 	
 	body {
