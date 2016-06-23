@@ -5,7 +5,18 @@
         mapParent = document.querySelector('.flex-video'),
         mq = window.matchMedia("(min-width: 800px)"),
         mb = document.querySelector("#mb"),
-        dt = document.querySelector("#dt");
+        dt = document.querySelector("#dt"),
+		lrgMp = document.querySelector("#lrg_map"),
+		mapLg = document.querySelector("#lrgMap");
+
+	function largeMap() {
+		mapLg.style.display = "block";
+		mapLg.appendChild(mapParent);
+		createRoute();
+		google.maps.event.trigger(map, 'resize');
+	}
+	
+	lrgMp.addEventListener("click", largeMap, false);
 
     function moveMap(mq) {
         if (mq.matches) {
