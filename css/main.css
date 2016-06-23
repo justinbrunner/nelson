@@ -235,6 +235,15 @@ span:not(.pac-item span) {
   font-weight: 500;
   color: #E7E7E7; }
 
+#lrgMap {
+	position: absolute;
+	margin: 0px auto;
+	width: 90%;
+	height: 75%;
+	display: none;
+	z-index: 99;
+  }
+
 @media screen and (min-width: 50em) {
   body {
     font-size: 14px; }
