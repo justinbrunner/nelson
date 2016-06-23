@@ -234,6 +234,15 @@ span:not(.pac-item span) {
 .panel span {
   font-weight: 500;
   color: #E7E7E7; }
+  
+  #closeMap {
+	  position: absolute;
+	  right: 0px;
+	  background: #fff;
+	  padding: 10px;
+	  z-index: 9999;
+	  cursor: pointer; 
+  }
 
 @media screen and (min-width: 50em) {
   body {
