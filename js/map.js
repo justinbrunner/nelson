@@ -6,20 +6,23 @@
         mq = window.matchMedia("(min-width: 800px)"),
         mb = document.querySelector("#mb"),
         dt = document.querySelector("#dt"),
+		mapCon = document.querySelector("#mapCon"),
 		lrgMp = document.querySelector("#lrg_map"),
 		close_map = document.querySelector("#closeMap"),
 		mapLg = document.querySelector("#lrgMap");
 
 	function largeMap() {
-		mapLg.style.display = "block";
 		mapLg.appendChild(mapParent);
+		mapCon.style.display = "block";
+		TweenLite.to(mapCon, 1, {opacity:1});
 		createRoute();
 		google.maps.event.trigger(map, 'resize');
 	}
 	
 	function removeLrg() {
-		//mapLg.removeChild(mapParent);
-		mapLg.style.display = "none";
+		mapLg.removeChild(mapParent);
+		TweenLite.to(mapCon, 1, {opacity:0});
+		mapCon.style.display = "none";
 		moveMap(mq)
 		createRoute();
 		google.maps.event.trigger(map, 'resize');
