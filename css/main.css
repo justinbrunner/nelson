@@ -1,5 +1,7 @@
 /* Scss Document */
 body {
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -54,7 +56,7 @@ h2 {
 h3 {
   font-size: 18px;
   font-weight: 300;
-  margin-top: 15px; }
+  margin-top: 12px; }
 
 hr {
   border-top: 1px solid #2d96d3;
@@ -107,7 +109,7 @@ header {
   overflow-x: hidden; }
 
 p {
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: .5rem; }
 
 a {
@@ -146,7 +148,7 @@ a {
   opacity: 1 !important; }
 
 .select-route {
-  visibility: hidden;
+  visibility: visible;
   padding: 0.8rem .55rem 0;
   line-height: 1;
   font-size: 0.95rem;
@@ -220,7 +222,7 @@ a {
 
 .panel {
   background: #3B3B3B;
-  padding: 10px 15px 10px 15px;
+  padding: 7px 10px 10px 10px;
   border: 1px solid #8B8B8B;
   margin-top: 30px; }
 
@@ -234,26 +236,8 @@ span:not(.pac-item span) {
 .panel span {
   font-weight: 500;
   color: #E7E7E7; }
-
-#lrgMap {
-	position: absolute;
-	top: 5%;
-	left: 10%;
-	width: 80%;
-	height: 65%;
-	display: none;
-	z-index: 99;
-  }
   
-  #closeMap {
-	  position: absolute;
-	  right: 0px;
-	  background: #fff;
-	  padding: 10px;
-	  z-index: 9999;
-	  cursor: pointer; 
-  }
-
+ 
 @media screen and (min-width: 50em) {
   body {
     font-size: 14px; }
