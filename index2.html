@@ -8,11 +8,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/lightbox.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
   </head>
 <body>
-<div id="lrgMap">
-<div id="closeMap">Close Map</div>
+<div id="mapCon">
+    <div id="lrgMap">
+    	<div id="closeMap">Close Map</div>
+    </div>
 </div>
+
+
+
+
+
 <section class="truckingCal">
     <div class="large-3 columns shadow">
     	<div class="large-6 large-centered columns title2">
@@ -47,7 +56,6 @@
                 <div id="map_canvas"></div>
             </div>
         </div>
-        
         <button id="lrg_map" class="button" data-reveal-id="myModal">Large Map</button>
         <!--<div class="reveal" id="map_lg" data-reveal>
  		  <div id="dt">
@@ -67,7 +75,7 @@
         
         <div id="mb"></div>
 
-        <div class="select-route-accordion hide">
+      <div class="select-route-accordion hide">
             <ul class="accordion" data-accordion data-allow-all-closed="true">
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Select Alternate Route</a>
