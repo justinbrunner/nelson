@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#mapCon {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  display: none;
+	  z-index: 99;
+	  background: rgba(46,46,46,0.85);
+	  opacity: 0;
+  }
+  
+  #lrgMap {
+	position: relative;
+	margin: 30px auto;
+	width: 95%;
+  }
+  
+  #lrgMap #map_canvas {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 80%; }
+  
+  #lrgMap .flex-video {
+  padding-bottom: 60%; }
+  
+  #closeMap {
+	  position: absolute;
+	  right: 0px;
+	  background: #fff;
+	  padding: 10px;
+	  z-index: 9999;
+	  cursor: pointer; 
+  }
